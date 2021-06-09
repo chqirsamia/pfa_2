@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<!--CODE CSS-->
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<!--Fichiers-->
+	<link href="/css/style.css" rel="stylesheet" />
+	<link href="/css/authentification.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/webjars/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+	<title>Connexion</title>
+</head>
+
+<body>
+	<!-- Menu -->
+	<div th:replace="fragments/navbar"></div>
+
+	<section id="blog" class="py-3"
+		style="background: url('/images/1.png');background-size: cover;">
+		<div style=" margin-top: -10px; margin-bottom: -20px;">
+			<div class="container-inscription">
+				<div class="container">
+					<!--Authentification par un compte existant-->
+					<div class="row">
+					
+						<div class="wrap-inscription insc" style="margin-bottom: 100px;height:440px;">
+							<div th:if="${param.success}" class="alert alert-error" style="font-weight: bold;color:green; text-align:center;margin-top:-40px;font-size:1.5em;margin-left:-60px;">    
+                    <i class="fa fa-check-circle" style="font-size:20px;padding-right:10px;" ></i>Félécitations! Votre compte a été créé avec succès
+                </div>
+							<div class="container">
+								<div class="row">
+									<form method="post" th:action="@{/connexion}" style="align-self: center;">
+										
+										<span class="inscription-form-title"
+											style="margin-left: -15px;margin-top: -20px;font-size:400%;text-align:center; font-family:fantasy">
+											Authentification
+										</span>
+										<!--Email-->
+										
+										<div class="wrap-input100 validate-input"
+											data-validate="Le format valide: exemple@abc.xyz">
+											<input class="input100" type="text" name="username" placeholder="Email" required>
+											<span class="symbol-input100">
+											</span>
+											
+											<!--<span style="color:red;">${form.erreurs['email']}</span>-->
+										</div>
+
+										<!--MOT de PASSE-->
+										<div class="wrap-input100 validate-input">
+											<input class="input100" id="mdp" type="text" required
+												onclick="if(this.type=='text')this.type='password'; if(this.value=='Mot de Passe')this.value='';"
+												name="password" placeholder="Mot de Passe">
+											<!-- <span class="symbol-input100">
+                                           
+                                        </span>
+                                        <span style="color:red;">${form.erreurs['motdepasse']}</span>
+                                        <span style="color:red;">${form.resultat}</span>-->
+										</div>
+
+
+										<!--Buton pour connecter-->
+										<button type="submit" class="authentification-form-btn"
+											style="margin-top:30px;font-family:fantasy;font-weight:bold;"> <br>
+											<span>
+												Connexion
+											</span>
+										</button>
+										<div th:if="${param.error}" class="alert alert-error" style="font-weight: bold;color:red; text-align:center;margin-bottom:-10px">    
+                    <i class="fas fa-exclamation-triangle" style="font-size:20px;padding-right:10px;" ></i>Invalid username and password.
+                </div>
+									</form>
+								</div>
+								<label for="check1"><br><a style="font-size:15px;margin-left:70px;">Si vous n'avez pas
+										encore de compte <br></a><a
+										style="font-size:18px;margin-left:90px;font-weight:bold;hover:black;"
+										href="/inscription"> Créez un nouveau compte</a></label>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<!-- Bas de page -->
+	<footer class="bg-light text-center text-lg-start" id="contact">
+		<div style="padding: 50px 0; background: rgb(128, 128, 64); text-align: rgb(0, 128, 128); color: #aaa;width:100%;">
+			<div class="container p-4">
+				<div class="row">
+					<div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+						<h3 style="font-weight:bold">Contact</h3>
+						<br>
+						<p><i class="fas fa-map-marker-alt"></i> Rue Al Maouz, Hay Riad, Rabat</p>
+						<p><i class="fas fa-phone"></i> +212 5 36 37 38 39</p>
+						<p><i class="fas fa-envelope"></i><a href="mailto:my@domain.com" class="a">
+								contact@inventsh.com</a></p>
+					</div>
+
+					<div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+						<br>
+						<p style="font-weight:bold;color:while;">
+							Un service client disponible et réactif<br><br>Une équipe qui travaille pour vous offrir des
+							conseils fidèles<br><br><span style="color:steelblue;font-size:20px;">Notre but principal
+								est de vous satisfaire</span>
+						</p>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--CODE JAVASCRIPT-->
+	<script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+	<script>
+		/*MOVEMENT LORS LE SITE SE LANCE*/
+
+		//navbar
+		ScrollReveal().reveal('.navmov', {
+			origin: 'top',
+			duration: 2000,
+			distance: '60px'
+		});
+		//slide
+		ScrollReveal().reveal('.insc', {
+			origin: 'bottom',
+			duration: 2000,
+			distance: '60px'
+		});
+		//footer
+		ScrollReveal().reveal('.colfooter0', {
+			origin: 'bottom',
+			duration: 2000,
+			distance: '60px'
+		});
+		ScrollReveal().reveal('.colfooter1', {
+			origin: 'bottom',
+			duration: 2000,
+			distance: '60px'
+		});
+		ScrollReveal().reveal('.colfooter2', {
+			origin: 'bottom',
+			duration: 2000,
+			distance: '60px'
+		});
+		ScrollReveal().reveal('.rowfooter', {
+			origin: 'right',
+			duration: 2000,
+			distance: '60px'
+		});
+		ScrollReveal().reveal('.inscriremv', {
+			origin: 'bottom',
+			duration: 2000,
+			distance: '60px'
+		});
+	</script>
+
+
+</body>
+
+</html>

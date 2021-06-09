@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<!--Fichiers-->
+	<link href="/css/style.css" rel="stylesheet" />
+	<link href="/css/inscription.css" rel="stylesheet" />
+	<link href="/css/validation.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/webjars/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<title>Inscription</title>
+	<style>
+	input:disabled {
+  background: #dddddd;
+}
+	[data-tip] {
+	position:relative;
+
+}
+[data-tip]:before {
+	content:'';
+	/* hides the tooltip when not hovered */
+	display:none;
+	content:'';
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid #1a1a1a;	
+	position:absolute;
+	top:30px;
+	left:35px;
+	z-index:8;
+	font-size:0;
+	line-height:0;
+	width:0;
+	height:0;
+}
+[data-tip]:after {
+	display:none;
+	content:attr(data-tip);
+	position:absolute;
+	top:25px;
+	left:0px;
+	padding:5px 8px;
+	background:#1a1a1a;
+	color:#fff;
+	z-index:9;
+	font-size: 0.75em;
+	line-height:18px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	white-space:nowrap;
+	word-wrap:normal;
+}
+[data-tip]:hover:before,
+[data-tip]:hover:after {
+	display:block;
+}
+	</style>
+</head>
+
+<body>
+	<!-- Menu -->
+	<div th:replace="fragments/navbar"></div>
+	<section id="blog" class="py-3" style="background: url('/images/fond.png');background-size: cover;">
+		<div class="container-inscription" style="margin-top: -10px; margin-bottom: -20px;width:100%">
+			<div class="wrap-inscription insc" style="height:700px;">
+
+				<div class="row" style="margin-left:0px;">
+					<div th:if="${param.error}" class="alert alert-error"
+						style="font-weight: bold;color:red; text-align:center;margin-bottom:-10px;margin-top:-30px;margin-left:70px">
+						<i class="fas fa-exclamation-triangle" style="font-size:20px;padding-right:10px;"></i>Cet email
+						possède déjà un compte.<br> Essayez avec un autre
+					</div>
+					<span class="inscription-form-title"
+						style="margin-left: 90px;margin-top: 7px;font-size:400%;text-align:center;padding-bottom:-100px;font-family:fantasy">
+						Inscription
+					</span>
+
+					<form method="post" name="myForm" th:action="@{/process_signup}" th:object="${user}" onsubmit="validateForm()" >
+						<!--NOM-->
+						<div class="wrap-input100 validate-input" data-validate="">
+							<input class="input100" type="text" name="nom" placeholder="Nom" th:field="*{nom}" required
+								minlength="2">
+						</div>
+
+						<!--PRENOM-->
+
+						<div class="wrap-input100 validate-input" data-validate="Champ obligatoire">
+							<input class="input100" type="text" name="prenom" placeholder="Prenom" th:field="*{prenom}"
+								required minlength="2">
+							<!--<span style="color:red">${form.erreurs['prenom']}</span>-->
+						</div>
+
+
+						<!--Email-->
+						<div class="wrap-input100 validate-input" data-tip="Le format valide: exemple@abc.xyz">
+							<input class="input100" type="text" name="email" placeholder="Email" th:field="*{email}" id="email"
+								required minlength="5" pattern="[a-zA-Z0-9.!#$%'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*">
+							<span style="color:red;font-weight:bold" id="error-email"></span>
+							<!--<span style="color:red">${form.erreurs['email']}</span>-->
+						</div>
+						<!--TEL-->
+						<div class="wrap-input100 validate-input" data-tip="Le format valide: 06xxxxxxxx / 05xxxxxxxx / 07xxxxxxxx">
+							<input class="input100" type="text" name="tel" id="tel" placeholder="Tel" th:field="*{tel}" required
+								minlength="10" maxlength="10" pattern="[0][5-7][0-9]{8}">
+							<span style="color:red;font-weight:bold" id="error-tel"></span>
+							<!--<span style="color:red">${form.erreurs['tel']}</span>-->
+						</div>
+						<!--Sexe-->
+
+						<div class="mylabel" style="font-weight: bold; margin-left: 50px;"> Sexe: </div>
+						<div class="mylabel">
+							<input type="radio" id="H" name="sexe" value="H" checked th:field="*{sexe}" required>
+							<div class="slidinggroove"></div>
+							<label class="mylabel" for="H">
+								<p class="labelterm">Homme</p>
+							</label>
+						</div>
+						<div class="mylabel" style="margin-left: 150px;">
+							<input type="radio" id="F" name="sexe" value="F" th:field="*{sexe}" required>
+							<div class="slidinggroove"></div>
+							<label class="mylabel" for="F">
+								<p class="labelterm">Femme</p>
+							</label>
+						</div>
+						<!--MOT de PASSE-->
+						<div class="wrap-input100 validate-input" data-validate="Champ obligatoire">
+							<input class="input100" type="text"
+								onclick="if(this.type=='text')this.type='password'; if(this.value=='Mot de Passe')this.value='';"
+								name="motdepasse" placeholder="Mot de Passe" th:field="*{password}" required id="motdepasse"
+								minlength="3">
+							<span style="color:red;font-weight:bold" id="error-mdp"></span>
+
+							<!--<span style="color:red">${form.erreurs['motdepasse']}</span>-->
+						</div>
+						<input type=hidden th:value="'C'" name="role">
+
+						<!--Confirmer mot de passe -->
+
+						<div class="wrap-input100 validate-input" data-validate="Champ obligatoire">
+							<input class="input100" type="text" name="confirmationmotdepasse" id="confirmationmotdepasse"
+								onclick="if(this.type=='text')this.type='password'; if(this.value=='Confirmer mot de passe')this.value='';"
+								placeholder="Confirmer mot de passe" required minlength="3" onkeyup='check();'>
+						</div>
+
+						<!--Les checkbox-->
+						<div class="checkbox icheck-check1">
+							<input type="checkbox" id="check1" value="1" name="accepte" required />
+							<label for="check1" style="font-weight:bold;">J'accepte les termes et conditions et la
+								politique de confidentialité</label>
+						</div>
+						<!--<span style="color:red">${form.erreurs['accepte']}</span>-->
+
+
+						<!--Buton pour envoyer demande d'inscription-->
+
+
+						<div class="container-inscription-form-btn">
+							<input type="submit" id="submit" style="margin-right: 30px;font-family:fantasy;font-weight:bold;"
+								class="inscription-form-btn" value="Envoyer"  />
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- Bas de page -->
+	<footer class="bg-light text-center text-lg-start" id="contact">
+		<div style="padding: 50px 0; background: #333; text-align: left; color: #aaa;width:100%;">
+			<div class="container p-4">
+				<div class="row">
+					<div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+						<h3 style="font-weight:bold">Contact</h3>
+						<br>
+						<p><i class="fas fa-map-marker-alt"></i> Rue Al Maouz, Hay Riad, Rabat</p>
+						<p><i class="fas fa-phone"></i> +212 5 36 37 38 39</p>
+						<p><i class="fas fa-envelope"></i><a href="mailto:my@domain.com" class="a">
+								contact@inventsh.com</a>
+						</p>
+					</div>
+
+					<div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+						<br>
+						<p style="font-weight:bold;color:while;">
+							Un service client disponible et réactif<br><br>Une équipe qui travaille pour vous offrir des
+							conseils fidèles<br><br><span style="color:steelblue;font-size:20px;">Notre but principal
+								est de vous satisfaire</span>
+						</p>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--CODE JAVASCRIPT-->
+	<!--Liens-->
+	<script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+	<script src="./ressources/js/moment.min.js"></script>
+	<script src="./ressources/js/global.js"></script>
+	<script src="./ressources/js/validation.js"></script>
+	<script>
+		/*MOVEMENT LORS LE SITE SE LANCE*/
+
+		//navbar
+		ScrollReveal().reveal('.navmov', {
+			origin: 'top',
+			duration: 2000,
+			distance: '60px'
+		});
+		//slide
+		ScrollReveal().reveal('.insc', {
+			origin: 'bottom',
+			duration: 2000,
+			distance: '60px'
+		});
+		//footer
+		ScrollReveal().reveal('.colfooter0', {
+			origin: 'bottom',
+			duration: 2000,
+			distance: '60px'
+		});
+		ScrollReveal().reveal('.colfooter1', {
+			origin: 'bottom',
+			duration: 2000,
+			distance: '60px'
+		});
+		ScrollReveal().reveal('.colfooter2', {
+			origin: 'bottom',
+			duration: 2000,
+			distance: '60px'
+		});
+		ScrollReveal().reveal('.rowfooter', {
+			origin: 'right',
+			duration: 2000,
+			distance: '60px'
+		});
+		ScrollReveal().reveal('.inscriremv', {
+			origin: 'bottom',
+			duration: 2000,
+			distance: '60px'
+		});
+
+	</script>
+	<script>
+
+		/*function validateForm() {
+			
+			var mdp = document.getElementById('motdepasse').value;
+			var conf = document.getElementById('confirmationmotdepasse').value;
+
+			if (mdp.localeCompare(conf) == 0) {
+				document.myForm.submit();
+			}
+			else {
+				
+			document.getElementById('error-mdp').innerHTML = "Veuillez entrer des mots de passe identiques";
+			}
+
+			//if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))||!(/^[0][5,6,7][0-9]{8}$/.test(tel))||(mdp.localeCompare(conf)!=0)){return false;}
+			/////return true;
+			/*if (phone.length<1) {
+				document.getElementById('error-phone').innerHTML = " Please Enter Your Phone *";      
+			}
+			if (message.length<1) {
+				document.getElementById('error-message').innerHTML = " Please Enter Your Message *";
+			}        
+
+		}*/
+		var check = function() {
+  if (document.getElementById('motdepasse').value ==
+    document.getElementById('confirmationmotdepasse').value) {
+    document.getElementById('error-mdp').style.color = 'green';
+    document.getElementById('error-mdp').innerHTML = 'Mots de passe identiques';
+    document.getElementById('submit').disabled = false;
+  } else {
+    document.getElementById('error-mdp').style.color = 'red';
+    document.getElementById('error-mdp').innerHTML = 'Mots de passe différents';
+    document.getElementById('submit').disabled = true;
+  }
+}
+	</script>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<link href="/css/style.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/webjars/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+	<!--Fichiers-->
+	<link rel="icon" type="image/png" href="/images/logo.jpeg" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="webjars/jquery/3.2.0/jquery.min.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+	<title>InventSH</title>
+</head>
+
+<body style="background-color:rgb(0, 128, 128);">
+	<!-- Menu -->
+	<div th:replace="fragments/navbar-client"></div>
+	<!-- Page d'acceuil -->
+	<section id="home"
+		style="background-image: url('/images/1.jpg');background-size: cover;height:100%;opacity:90%;padding-top:50px">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" class="item1 active" data-slide-to="0"></li>
+				<li data-target="#myCarousel" class="item2" data-slide-to="1"></li>
+				<li data-target="#myCarousel" class="item3" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner">
+				<!-- SLIDE 1 -->
+
+				<div class="carousel-item carousel-image-1 active  ">
+					<div class="container">
+						<div class="carousel-caption d-non d-sm-block text-center">
+							<h2 class="display-4 d-inline mylead"
+								style="background-color: rgb(119,136,153); font-family:  Lucida Console; font-size:110px;opacity:100%; ">
+								Bienvenue à InventSH </h2>
+							<p></p>
+							<p class="lead textbg"
+								style="background-color:rgba(41, 128, 185,0.6);font-size:30px;font-weight:bold;font-family:garamond">
+								Une équipe de professionnels pour mieux gerer votre inventaire <br> </p><br><br><br><br><br><br><br>
+						</div>
+					</div>
+				</div>
+
+
+				<!--Slide 2-->
+				<div class="carousel-item carousel-image-2 ">
+					<div class="container">
+						<div class="carousel-caption d-non d-sm-block text-center ">
+							<div class="row">
+
+								<div class="col">
+									<h2 class="display-4 d-inline mylead"
+										style="background-color: rgb(119,136,153); font-family:  Lucida Console; font-size:70px;">
+										Votre expérience avec InventSH </h2>
+									<p></p>
+									<p class="lead textbg"
+										style="background-color:rgba(41, 128, 185,0.6);font-size:30px;font-weight:bold;font-family:garamond">
+										Demandez vos produits ou vous etes <br> </p>
+									<br><br><br><br><br><br><br>
+								</div>
+								<div class="col"><img src="/images/3.jpg" style="margin-top:120px;border-radius:50px;height:270px;" /></div>
+							</div>
+						</div>
+					</div>
+				</div>
+					<!--Slide 3-->
+					<div class="carousel-item carousel-image-2 ">
+					<div class="container">
+						<div class="carousel-caption d-non d-sm-block text-center ">
+							<div class="row">
+								<div class="col"><img src="/images/2.jpg" style="margin-top:120px;border-radius:50px;height:270px;" /></div>
+
+								<div class="col">
+									<h2 class="display-4 d-inline mylead"
+										style="background-color: rgb(119,136,153); font-family:  Lucida Console; font-size:60px;">
+										Une communauté de confiance </h2>
+									<p></p>
+									<p class="lead textbg"
+										style="background-color:rgba(41, 128, 185,0.6);font-size:30px;font-weight:bold;font-family:garamond">
+										InventSH compte des milliers de membres.   <br> </p>
+									<br><br><br><br><br><br><br>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				<!--Suivant & Precedant-->
+				<a href="#myCarousel" role="button" data-slide="prev" class="carousel-control-prev">
+					<span class="carousel-control-prev-icon"></span>
+				</a>
+
+				<a href="#myCarousel" role="button" data-slide="next" class="carousel-control-next">
+					<span class="carousel-control-next-icon"></span>
+				</a>
+			</div>
+	</section>
+	<!--Nos services  -->
+	<div class="row" id="apropos" style="margin-top: 100px;margin-bottom: 90px;">
+		<!-- Service Client -->
+		<div class="col-12 col-lg-3 srv1">
+			<div class="single-service-area mb-80">
+				<div class="service-icon">
+					<i class="far fa-check-circle" style="margin-top: 25px;"></i>
+				</div>
+				<h5 style="font-weight: bold;">Services de qualité</h5>
+				<p></p>
+			</div>
+			<center>
+				Personnel rigoureux et bien formé<br> Professionnalisme et sérieux
+				<br> <br> <br>
+			</center>
+		</div>
+
+		<div class="col-12 col-lg-3 srv2">
+			<div class="single-service-area mb-80">
+				<div class="service-icon">
+					<i class="fas fa-dollar-sign" style="margin-top: 25px;"></i>
+				</div>
+				<h5 style="font-weight: bold;">Meilleur rapport qualité prix</h5>
+				<p></p>
+			</div>
+			<center>
+				Offrant ponctualité ainsi que la flexibilité <br><br>
+			</center>
+		</div>
+		<div class="col-12 col-lg-3 srv3">
+			<div class="single-service-area mb-80">
+				<div class="service-icon">
+					<i class="fas fa-gavel" style="margin-top: 25px;"></i>
+				</div>
+				<h5 style="font-weight: bold;">Bienvenue</h5>
+				<p></p>
+			</div>
+			<center>
+				Choisissez Vos produits<br> <span
+					style="font-weight: bold;color: steelblue;"> On s'occupe du reste </span><br>
+				<br><br>
+			</center>
+		</div>
+		<div class="col-12 col-lg-3 srv4">
+			<div class="single-service-area mb-80">
+				<div class="service-icon">
+					<i class="fas fa-shield-alt" style="margin-top: 25px;"></i>
+				</div>
+				<h5 style="font-weight: bold;">Sécurité et disponibilité</h5>
+				<p></p>
+			</div>
+			<center>
+				Tous nos personnels ont l'expertise du domaine. <br> 
+				<br> <br>
+			</center>
+		</div>
+	</div>
+	<!-- Bas de page -->
+	<footer class="bg-light text-center text-lg-start" id="contact">
+		<div style="padding: 50px 0; background: #333; text-align: left; color: #aaa;width:100%;">
+			<div class="container p-4">
+				<div class="row">
+					<div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+						<h3 style="font-weight:bold">Contact</h3>
+						<br>
+						<p><i class="fas fa-map-marker-alt"></i> Rue Al Maouz, Hay Riad, Rabat</p>
+						<p><i class="fas fa-phone"></i> +212 5 36 37 38 39</p>
+						<p><i class="fas fa-envelope"></i><a href="mailto:my@domain.com" class="a">
+								contact@inventsh.com</a>
+						</p>
+					</div>
+
+					<div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+						<br>
+						<p style="font-weight:bold;color:while;">
+							Un service client disponible et réactif<br><br>Une équipe qui travaille pour vous offrir des
+							conseils fidèles<br><br><span style="color:steelblue;font-size:20px;">Notre but principal
+								est de vous satisfaire</span>
+						</p>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--Complément JS-->
+	<!--Mouvement lors de l'affichage-->
+	<script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+		crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+	<script>
+		/*ScrollReveal().reveal('.mylead', {
+			origin: 'left',
+			duration: 2000,
+			distance: '60px'
+		});
+		ScrollReveal().reveal('.textbg', {
+			origin: 'bottom',
+			duration: 2000,
+			distance: '60px'
+		});*/
+		$('.carousel').carousel({
+			interval: 6000,
+			pause: 'hover'
+		});
+		$('#myCarousel').carousel();
+		/*$(".item1").click(function(){
+		$("#myCarousel").carousel(0);
+	});
+	$(".item2").click(function(){
+		$("#myCarousel").carousel(1);
+	});
+	$(".item3").click(function(){
+		$("#myCarousel").carousel(2);
+});*/
+	</script>
+</body>
+
+</html>
