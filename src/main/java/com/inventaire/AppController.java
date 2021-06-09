@@ -43,6 +43,10 @@ public class AppController {
 	public String viewClientHomePage(){
 		return "acceuilC";
 	}
+	@GetMapping("/acceuil_collecteur")
+	public String viewCollecteurHomePage(){
+		return "acceuilCO";
+	}
 	@GetMapping("/connexion")
 	public String showSignInForm(Model model) {
 		model.addAttribute("user",new User());

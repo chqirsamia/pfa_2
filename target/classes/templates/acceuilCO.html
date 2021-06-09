@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<link href="/css/style.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/webjars/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+	<!--Fichiers-->
+	<link rel="icon" type="image/png" href="/images/logo.jpeg" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="webjars/jquery/3.2.0/jquery.min.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+	<title>inventSH</title>
+</head>
+
+<body style="background-color:rgb(192,192,192);height:92%">
+	<!-- Menu -->
+	<div th:replace="fragments/navbar-collecteur"></div>
+	<!-- Page d'acceuil -->
+	<section id="home"
+		style="background-image: url('/images/1.jpg');background-size: cover;height:92%;opacity:90%;">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			
+			<div class="carousel-inner">
+				<!-- SLIDE 1 -->
+
+				<div class="carousel-item carousel-image-1 active  " style="margin-top:100px;margin-bottom:-100px;">
+					<div class="container">
+						<div class="carousel-caption d-non d-sm-block text-center">
+							<h2 class="display-4 d-inline mylead"
+								style="background-color: rgb(119,136,153); font-family:  Lucida Console; font-size:90px;opacity:100%; ">
+								Votre espace d'administration INVENT </h2>
+							<p></p>
+							<p class="lead textbg"
+								style="background-color:rgba(41, 128, 185,0.6);font-size:30px;font-weight:bold;font-family:garamond">
+								Personnalisez la plateforme à votre guise <br> </p><br><br><br><br><br><br><br>
+						</div>
+					</div>
+				</div>
+
+
+				
+			</div>
+			<!--Suivant & Precedant-->
+			
+
+			
+		</div>
+	</section>
+	<!--Nos services  -->
+	
+	<!--Complément JS-->
+	<!--Mouvement lors de l'affichage-->
+	<script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+		crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+	<script>
+		/*ScrollReveal().reveal('.mylead', {
+			origin: 'left',
+			duration: 2000,
+			distance: '60px'
+		});
+		ScrollReveal().reveal('.textbg', {
+			origin: 'bottom',
+			duration: 2000,
+			distance: '60px'
+		});*/
+		$('.carousel').carousel({
+			interval: 6000,
+			pause: 'hover'
+		});
+		$('#myCarousel').carousel();
+		/*$(".item1").click(function(){
+		$("#myCarousel").carousel(0);
+	});
+	$(".item2").click(function(){
+		$("#myCarousel").carousel(1);
+	});
+	$(".item3").click(function(){
+		$("#myCarousel").carousel(2);
+});*/
+	</script>
+</body>
+
+</html>
