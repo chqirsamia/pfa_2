@@ -89,16 +89,16 @@
 
 					<form method="post" name="myForm" th:action="@{/process_signup}" th:object="${user}" onsubmit="validateForm()" >
 						<!--NOM-->
-						<div class="wrap-input100 validate-input" data-validate="">
+						<div class="wrap-input100 validate-input" data-validate="Champ obligatoire" data-tip="Le nom de l'entreprise sinon">
 							<input class="input100" type="text" name="nom" placeholder="Nom" th:field="*{nom}" required
 								minlength="2">
 						</div>
 
 						<!--PRENOM-->
 
-						<div class="wrap-input100 validate-input" data-validate="Champ obligatoire">
+						<div class="wrap-input100 validate-input" data-validate="">
 							<input class="input100" type="text" name="prenom" placeholder="Prenom" th:field="*{prenom}"
-								required minlength="2">
+								 minlength="2">
 							<!--<span style="color:red">${form.erreurs['prenom']}</span>-->
 						</div>
 
@@ -134,11 +134,18 @@
 								<p class="labelterm">Femme</p>
 							</label>
 						</div>
+						<div class="mylabel" style="margin-left: 110px;">
+							<input type="radio" id="E" name="sexe" value="E" th:field="*{sexe}" required>
+							<div class="slidinggroove"></div>
+							<label class="mylabel" for="E">
+								<p class="labelterm">Entreprise</p>
+							</label>
+						</div>
 						<!--MOT de PASSE-->
 						<div class="wrap-input100 validate-input" data-validate="Champ obligatoire">
 							<input class="input100" type="text"
 								onclick="if(this.type=='text')this.type='password'; if(this.value=='Mot de Passe')this.value='';"
-								name="motdepasse" placeholder="Mot de Passe" th:field="*{password}" required id="motdepasse"
+								name="motdepasse" placeholder="Mot de Passe" th:field="*{passwordncry}" required id="motdepasse"
 								minlength="3">
 							<span style="color:red;font-weight:bold" id="error-mdp"></span>
 
