@@ -17,7 +17,7 @@ public class User {
 	private Long id;
 	@Column(nullable=false,length=50)
 	private String nom;
-	@Column(nullable=false,length=50)
+	@Column(nullable=true,length=50)
 	private String prenom;
 	@Column(nullable=false,length=100)
 	private String email;
@@ -27,6 +27,8 @@ public class User {
 	private String tel;
 	@Column(nullable=false,length=100)
 	private String password;
+	@Column(nullable=false,length=100)
+	private String passwordncry;
 	@ColumnDefault("'C'")
 	@Column(nullable=true,length=2)
 	private String role;
@@ -71,6 +73,12 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getPasswordncry() {
+		return passwordncry;
+	}
+	public void setPasswordncry(String password) {
+		this.passwordncry = password;
 	}
 	public String getRole() {
 		return role;
