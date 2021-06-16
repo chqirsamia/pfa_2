@@ -55,72 +55,37 @@
                         <div class="container" style="margin-left:-120px;margin-right:auto;" >
                             <div class="row" >
                                     <span class="inscription-form-title" style="margin-left: auto;margin-right:auto;margin-top: -20px;font-size:400%;text-align:center;">
-                                       Les produits
+                                       Panier
                                     </span>	
                                     </div>
                                    <ul class="list-group shadow">
-                <!-- list group item-->
-                <li class="list-group-item">
+               
 	                    <!-- Custom content-->
-	                    <div class="row mt-0 font-weight-bold mb-2 dislay-4">
-	                    	     <div class="col-sm-2">
-	                    		<h5 class="text-center"><i class="fas fa-box-open"></i> Nom</h5>
-	                    	</div>
-	                    	<div class="col-sm-2">
-	                    		<h5 class="text-center"><i class="fas fa-box-open"></i> Code</h5>
-	                    	</div>
-	                    	<div class="col-sm-2">
-	                    		<h5 class="text-center"><i class="fas fa-box-open"></i> Price</h5>
-	                    	</div>
-	                    	<div class="col-sm-2">
-	                    		<h5 class="text-center"><i class="fas fa-box-open"></i> Quantity</h5>
-	                    	</div>
-	                    	<div class="col-sm-2">
-	                    	
-	                    		<h5 class="text-center"><i class="fas fa-box-open"></i> total</h5>
-	                    	</div>
-	                    	
-	                    	
-	                    	
-	                    	
-	                    	
-	                    </div>
-	                </li>  
-                             <div class="product-preview-container" th:each="prodInfo : ${list}">
-                             <div class="product-preview-container" th:with="product=${prodInfo.produit}" >
-          
-          <li class="list-group-item">
-	                    <!-- Custom content-->
-	                    <div class="row mt-0 font-weight-bold mb-2 dislay-4">
-	                    	     <div class="col-sm-2">
-	                    	     	                    		<h5 class="text-center"> <span th:utext="${product.nom_produit}"></span></h5>
-	                    	     
-	                    	</div>
-	                    	<div class="col-sm-2">
-	                    		<h5 class="text-center"> <span th:utext="${product.code}"></span></h5>
-	                    	</div>
-	                    	<div class="col-sm-2">
-	                    		<h5 class="text-center"> <span th:utext="${product.prix_unitaire}"></span></h5>
-	                    	</div>
-	                    	<div class="col-sm-2">
-	                    		<h5 class="text-center">  <span th:utext="${prodInfo.quantite}"></span></h5>
-	                    	</div>
-	                    	<div class="col-sm-2">
-	                    		<h5 class="text-center"><span th:utext="${prodInfo.total}"></span></h5>
-	                    	</div>
-	                    	
-	                    	
-	                    	
-	                    	
-	                    	
-	                    </div>
-	                </li>  
-            
-              
-            </li>
-             </ul>
-            </div> 
+	                    <div class="row">
+	                   <div class="col">
+	                    	     <th:block th:each="prodInfo : ${list}">   
+	                    	    
+                     <div class="row border rounded " th:with="product=${prodInfo.produit}" >
+                            <div>
+                           <a class="fas fa-trash icon-red" th:href="@{/commande/delete/{id}(id=${product.id})}"> </a>
+                            </div>    
+                            </div>
+                           <div class="col"><a><b th:value="${product.nom_produit}"></b></a></div>      
+                           <div th:replace="quantity :: quantity(${prodInfo.quantite},${product.id})">Quantité</div>
+                            <div>
+                             <span th:value="${product.prix}" ></span>
+                             <span th:value="${product.total}" ></span>
+                            </div>                     
+                  </th:block ></div> 
+          <div class="col" th:unless="${#lists.isEmpty(list)}" >
+          <div class="mt-2">
+          <span class="h3">TOTAL:<span th:value="${total}" ></span> </span>
           </div>
+          <div class="mt-2">
+          <button class="btn btn-info">Confirmer</button>
+          </div>
+          </div>
+          <div th:if ="${#lists.isEmpty(list)}"><h2 style="color:green;font-size:30px;padding-left:10px;" >Vous n'avez ajouter aucun produit</h2></div>
                                     </div>
  </div>
   </div>                             
@@ -147,5 +112,7 @@
 		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 		crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+	
+<script src="js/quantity.js"></script>
 </body>
 </html>

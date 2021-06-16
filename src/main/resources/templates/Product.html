@@ -1,132 +1,138 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  
-<!--CODE CSS-->
+    <meta charset="UTF-8">
+    <base href="/">
+    <title>Trip</title>
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-		integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-	<!--Fichiers-->
-	<link href="/css/style.css" rel="stylesheet" />
-	<link href="/css/inscription.css" rel="stylesheet" />
-	<link href="/css/validation.css" rel="stylesheet" />
-	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="/webjars/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <title>produits</title>
-  
-  <style type="text/css">
-  	body {
-	    background: #E0EEEE;/* linear-gradient(to right, #c04848, #480048); */
-	    min-height: 100vh
-	}
-	
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+          rel="stylesheet" type="text/css">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-	
-	
-	.text-gray {
-	    color: #aaa
-	}
 
-  </style>
+    <link href="css/produit_interface_employee.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 
-<body>
-
-<!-- Menu -->
-
-<div th:replace="fragments/navbar-admin"></div>
-
-<section id="blog" class="py-3" style="background: url('/images/fond.png');background-size: cover;">
-   <div  style=" margin-top: -20px; margin-bottom: -20px;">
-		<div class="container-inscription" style="width:auto;margin-top:10px;" >
-            <div class="container" >
-                <div class="row" style="margin-top: -100px;">
-                    <div class="wrap-inscription insc" style="height:auto; width:1500px;margin-left:auto;margin-right:auto;">
-                        <div class="container" style="margin-left:-120px;margin-right:auto;" >
-                            <div class="row" >
-                                    <span class="inscription-form-title" style="margin-left: auto;margin-right:auto;margin-top: -20px;font-size:400%;text-align:center;">
-                                       Les produits
-                                    </span>	
-                                    <form  th:object="${productForm}" th:action="@{/admin/product}"
-              method="POST" enctype="multipart/form-data">
-         <table style="text-align:left;">
-            <tr>
-               <td>Code *</td>
-               <td style="color:red;">
-                  <input th:field="*{newProduct}" type="hidden" />
-                  <input th:if="${productForm.newProduct}" type="text"
-                     th:field="*{code}" />  
-                  <th:block th:if="${!productForm.newProduct}">   
-                       <span th:utext="${productForm.code}"></span>   
-                       <input type="hidden" th:field="*{code}" />                                       
-                  </th:block>   
-               </td>
-               <td>
-                  <span class="error-message" th:if="${#fields.hasErrors('code')}" th:errors="*{code}">..</span>
-               </td>   
-            </tr>
-            <tr>
-               <td>Name *</td>
-               <td><input th:field="*{name}"  /></td>
-               <td>
-                  <span class="error-message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">..</span>
-               </td>
-            </tr>
-            <tr>
-               <td>Price *</td>
-               <td><input th:field="*{price}"  /></td>
-               <td>
-                  <span class="error-message" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">..</span>
-               </td>
-            </tr>
-            <tr>
-               <td>Image</td>
-               <td>
-                  <img th:src="@{|/productImage?code=${productForm.code}|}" width="100"/>
-               </td>
-               <td> </td>
-            </tr>
-            <tr>
-               <td>Upload Image</td>
-               <td><input type="file" th:field="*{fileData}" /></td>
-               <td> </td>
-            </tr>
-            <tr>
-               <td>&nbsp;</td>
-               <td>
-                  <input type="submit" value="Submit" />
-                  <input type="reset" value="Reset" />
-               </td>
-            </tr>
-         </table>
-      </form>
-       
-    
-		 <!-- End -->
-        </div>
+<body style="background-color:rgb(192,192,192);height:92%">
+<div class="nav">
+    <div class="nav-title">
+        <div class="nav-desc">
+            <h1>InventSH</h1>
+            <p><i class="fa fa-stethoscope"></i></p></div>
+           
         
+        <i class="fas fa-box" style="color:white;font-size:30px;padding-left:900px;" ></i>  <a class="navbar-brand" style="color:white;font-family:cursive;font-size:30px;height:200%;text-transform:none" th:href="@{/commandes/panier/{id}(id=${id})}">Panier</a>
+        
+       
     </div>
-</div></div></div></div></div></div></section>
-<script type="text/javascript" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
-	<script src="http://code.jquery.com/jquery-3.3.1.min.js"
-		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-		crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-		crossorigin="anonymous"></script>
-	<script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+</div>
+
+
+
+<!-- Header -->
+<header class="header">
+<br>
+<br>
+<br>
+<br>
+    <h1>C'est votre Pharmacie, votre chez-vous.</h1>
+</header>
+<!-- Fin Header -->
+<!-- Barre de trie -->
+<section class="recherche">
+    <div class="rech-trie">
+
+        <form method="get" action="">
+            <div class="boxContainer">
+                <table class="elementContainer">
+                    <tr>
+                        <td>
+                            <input id="txtSearch" type="text" class="search" placeholder="Search">
+                        </td>
+                        <td>
+                            <a href="#"><i class="material-icons">
+                                search
+                            </i></a>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+        <!--   th:value="${id}" -->
+        <!--    <div id="id" >[[${id}]]</div>-->
+
+        <select class="option" name="chercherPar" id="chercherPar">
+            <option disabled="disabled" selected="selected">Chercher Par</option>
+            <option th:each="chercherPar :${chercherPar}" th:text="${chercherPar}"/>
+
+        </select>
+        <select class="option" name="subject" id="trierPar">
+            <option disabled="disabled" selected="selected">Trier Par</option>
+            <option th:each="trierPar :${trierPar}" th:text="${trierPar}"/>
+
+        </select>
+    </div>
+   
+
+</section>
+<!--Fin  barre de trie -->
+<!-- Section Principale-->
+<section class="main" id="main">
+    <!-- Toutes les cartes -->
+    <div class="cards" id="cards" ><!--th:each="produit :${produits}"-->
+        <!--<div class="card" id="card">
+            <img  src="https://images.ctfassets.net/hrltx12pl8hq/3MbF54EhWUhsXunc5Keueb/60774fbbff86e6bf6776f1e17a8016b4/04-nature_721703848.jpg?fit=fill&w=480&h=270" alt="" ><!-th:src="*{'data:image/jpeg;base64,'+${produit.image}}" >->
+            <div class="card-header">
+                <h4 class="title"  th:text="${produit.nom_produit}" />
+                <h4 class="price" th:text="${produit.prix_unitaire}"/>
+            </div>
+            <div class="card-body">
+                <p th:text="${produit.description}"/>
+            </div>
+        </div>-->
+
+
+
+
+
+
+    </div>
+   
+   
+ 
+
+</section>
+<!-- Fin de la section principale -->
+
+<!--Pied de page -->
+<footer>
+    <p>&copy; Contactez-nous au 06 42 18 96 54</p>
+    <div class="social-media">
+        <p><i class="fa fa-facebook"></i></p>
+        <p><i class="fa fa-twitter"></i></p>
+        <p><i class="fa fa-instagram"></i></p>
+        <p><i class="fa fa-linkedin-square"></i></p>
+    </div>
+</footer>
+<!-- Fin de page -->
+<script type="text/javascript">
+contextPath="[[@{/commandes}]]"
+var id="[[${id}]]";
+</script>
+<script src="js/product.js"></script>
+<script src="js/product2.js"></script>
+
+
 </body>
 </html>

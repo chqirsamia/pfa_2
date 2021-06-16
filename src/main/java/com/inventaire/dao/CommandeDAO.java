@@ -16,4 +16,6 @@ public interface CommandeDAO extends JpaRepository<Commande,Integer> {
 	    List<Commande> findByEmployeur(Long id);
 	 @Query("select p from Commande p where p.etat='E'")
 	    List<Commande> findCommandeExterne();
+	 @Query("select p from Commande p where p.id=?1")
+	    Commande findById(int id);
 }

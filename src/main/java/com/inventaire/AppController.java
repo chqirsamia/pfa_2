@@ -50,6 +50,11 @@ public class AppController {
 		model.addAttribute("id",id);
 		return "acceuilCO";
 	}
+	@GetMapping("/acceuil_employeur/{id}")
+	public String viewEmployeurHomePage(Model model,@PathVariable("id") Long id){
+		model.addAttribute("id",id);
+		return "acceuilE";
+	}
 	
 
 	@GetMapping("/user-list/{id}")

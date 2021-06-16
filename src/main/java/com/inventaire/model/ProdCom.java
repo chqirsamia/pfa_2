@@ -1,5 +1,6 @@
 package com.inventaire.model;
 
+import java.beans.Transient;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -25,13 +26,11 @@ public class ProdCom {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_produit",referencedColumnName="id_produit",insertable=false,updatable=false
-    , nullable = false)
+	@ManyToOne()
+    @JoinColumn(name = "id_produit")
     private Produit produit;
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_demande",referencedColumnName="id",insertable=false,updatable=false
-	, nullable = false)
+	@ManyToOne()
+	@JoinColumn(name = "id_demande")
     private Commande commande;
 	@Column(nullable=false,length=50)
 	@ColumnDefault("0")
@@ -41,7 +40,7 @@ public class ProdCom {
 	private double prix;
 @Column(nullable=true,length=50)
 
-private double total;
+private float total;
 	
 	
 	public int getId() {
@@ -63,10 +62,11 @@ private double total;
 	public void setPrix(double prix) {
 		this.prix=prix;
 	}
-	public double getTotal() {
-		return total;
+	@Transient
+	public float getTotal() {
+		return this.produit.getPrix_unitaire()*quantite;
 	}
-	public void setTotal(double d) {
+	public void setTotal(float d) {
 		this.total = d;
 	}
 	public Commande getCommande() {
@@ -81,7 +81,7 @@ private double total;
         return produit;
     }
  
-    public void setProduct(Produit produit) {
+    public void setProduit(Produit produit) {
         this.produit = produit;
     }
 

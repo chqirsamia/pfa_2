@@ -11,6 +11,7 @@ import java.util.List;
 public class ProduitService {
 
     @Autowired
+	
     ProduitDAO produitDAO;
 
     public List<Produit> findAllProduit(){
@@ -25,6 +26,10 @@ public class ProduitService {
 
     public List<Produit> findProduitByTitre(String titre){
         return produitDAO.findProduitByTitre(titre);
+    }
+    
+    public  Produit findProduitById(int id){
+        return produitDAO.findProduitById_produit(id);
     }
 
     public List<Produit> findProduitByDescription(String description){
@@ -92,4 +97,6 @@ public class ProduitService {
         produitDAO.deleteAll();
         return "Touts les produits ont été supprimé avec succes!";
     }
+
+	
 }
