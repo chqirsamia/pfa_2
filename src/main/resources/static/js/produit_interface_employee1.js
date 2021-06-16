@@ -4,11 +4,6 @@
 
 
 
-    // Popup Singin
-    $(".btn-grp").click(function(e) {
-        e.preventDefault();
-        $(".grp").css('display','none');
-    });
 
     $("#chercherPar").change(function(){
        var selectedmethod = $("#chercherPar option:selected").text();
@@ -188,26 +183,85 @@
                             <p> Qantité en stock : `+data[i].quantite+`</p>
                             <div>
                               <p id="update"><i class="fa fa-pencil-square-o"></i></p>
-                              <p id="delete" onclick="deleteProduct(`+data[i].id_produit+`)"><i class="fa fa-trash"></i></p>
+                              <p id="delete" class="delete" value="`+data[i].id_produit+`"><i class="fa fa-trash"></i></p>
                             </div>
                           </div>
                     </div>`
             cards.innerHTML += row;
-            console.log(cards);
+
+
+            var supp = document.getElementsByClassName('delete');
+            var num = supp.length;
+
+            function deleteP() {
+                var id =  $('.delete').attr("value");
+                console.log('value = '+ id);
+                deleteProduct(id);
+            }
+
+            for (var j = 0; j < num; j++) {
+                //comments[i].addEventListener('click', deleteP, false);
+
+                supp[j].addEventListener("click", (function(j){
+                    return function() {
+                        var id =  document.getElementsByClassName('delete')[j].getAttribute("value");
+                        console.log('value = '+ id);
+                        deleteProduct(id);
+                    }
+                })(j));
+
+            }
+
+
         }
     }
     function deleteProduct(id_produit){
         var urlParm = url + "/deleteProduit/"+id_produit;
-        var produits = httpGet(urlParm);
-        console.log(produits);
+        httpGet(urlParm);
+        var urlfindAll = url + "/findAllProduit";
+        var produits = httpGet(urlfindAll);
         rebuildTable(produits);
-       /* $.ajax({
-            urll: url+'/deleteProduit/'+id_produit,
-            method : 'DELETE'
-
-        });*/
+        /*
+        $.ajax({
+            url: 'http://localhost:8080/deleteProduit/'+id_produit,
+            method: 'GET',
+            success: function () {
+                var urlParm = url + "/findAllProduit";
+                var produits = httpGet(urlParm);
+                rebuildTable(produits);
+            },
+            error: function (error) {
+                alert(error);
+            }
+        })*/
 
     }
+
+    /*var comments = document.getElementsByClassName('delete');
+    var numComments = comments.length;
+    function deleteP() {
+        var id =  $('.delete').attr("value");
+        console.log('value = '+ id);
+        deleteProduct(id);
+    }
+
+    for (var i = 0; i < numComments; i++) {
+        comments[i].addEventListener('click', deleteP, false);
+    }*/
+
+
+
+   /* $('.delete').addEventListener('click',function () {
+        var id = $(this).attr("value");
+        console.log('value = '+ id);
+        deleteProduct(id);
+    } , false);*/
+
+    /*$('.delete').on('click',function () {
+        var id = $(this).attr("value");
+        console.log('value = '+ id);
+        deleteProduct(id);
+    });*/
 
     function httpGet(theUrl)
     {

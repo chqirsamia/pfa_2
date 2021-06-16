@@ -1,10 +1,19 @@
 package com.inventaire.service;
 
+import com.inventaire.dao.CategorieDAO;
+import com.inventaire.dao.EmplacementDAO;
 import com.inventaire.dao.ProduitDAO;
+import com.inventaire.model.Categorie;
+import com.inventaire.model.Emplacement;
 import com.inventaire.model.Produit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.sql.Date;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -12,6 +21,12 @@ public class ProduitService {
 
     @Autowired
     ProduitDAO produitDAO;
+
+    @Autowired
+    CategorieDAO categorieDAO;
+
+    @Autowired
+    EmplacementDAO emplacementDAO;
 
     public List<Produit> findAllProduit(){
         return produitDAO.findAll();
@@ -83,13 +98,54 @@ public class ProduitService {
 
     /* Delete Produit (s) */
 
-    public String deleteProduit(int id_produit){
+    public List<Produit> deleteProduit(int id_produit){
         produitDAO.deleteById(id_produit);
-        return "Produit "+produitDAO.findProduitById_produit(id_produit).getNom_produit()+ " a été supprimé avec succes";
+        return produitDAO.findAll();
     }
 
     public String deleteAll(){
         produitDAO.deleteAll();
         return "Touts les produits ont été supprimé avec succes!";
+    }
+    public void registerProduit(MultipartFile file,
+                                String nom_produit,
+                                String titre,
+                                String description,
+                                int code,
+                                String categorie,
+                                String emplacement,
+                                String employee,
+                                float prix,
+                                int quantite,
+                                String etat_stock,
+                                Date date_cree){
+
+            Produit produit = new Produit();
+            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+            if (fileName.contains("..")) {
+                System.out.println("not a a valid file");
+            }
+            try {
+                produit.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Categorie categorie1 = categorieDAO.findCategoriebyNom_categorie(categorie);
+            Emplacement emplacement1 = emplacementDAO.findEmplacementByNom_emplacement(emplacement);
+            System.out.println("emplacement1.getId_emplacement() :"+emplacement1.getId_emplacement());
+            produit.setNom_produit(nom_produit);
+            produit.setTitre(titre);
+            produit.setDescription(description);
+            produit.setCode(code);
+            produit.setId_emplacement(emplacement1.getId_emplacement());
+            produit.setId_categorie(categorie1.getId_categorie());
+            produit.setId_employee(1);
+            produit.setPrix_unitaire(prix);
+            produit.setQuantite(quantite);
+            produit.setEtat_stock(etat_stock);
+            produit.setDate_cree(date_cree);
+            produitDAO.save(produit);
+
     }
 }

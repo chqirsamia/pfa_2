@@ -78,13 +78,41 @@
                             <p> Qantité en stock : `+data[i].quantite+`</p>
                             <div>
                               <p id="update"><i class="fa fa-pencil-square-o"></i></p>
-                              <p id="delete"><i class="fa fa-trash"></i></p>
+                              <p id="delete" class="delete" value="`+data[i].id_produit+`"><i class="fa fa-trash"></i></p>
                             </div>
                           </div>
                     </div>`
             cards.innerHTML += row;
-            console.log(cards);
+            var deletes = document.getElementsByClassName('delete');
+            var numdeletes = deletes.length;
+
+            function deleteP() {
+                var id =  $('.delete').attr("value");
+                console.log('value = '+ id);
+                deleteProduct(id);
+            }
+
+            for (var j = 0; j < numdeletes; j++) {
+                //comments[i].addEventListener('click', deleteP, false);
+
+                deletes[j].addEventListener("click", (function(j){
+                    return function() {
+                        var id =  document.getElementsByClassName('delete')[j].getAttribute("value");
+                        console.log('value = '+ id);
+                        deleteProduct(id);
+                    }
+                })(j));
+
+            }
         }
+    }
+
+    function deleteProduct(id_produit) {
+        var urlParm = url + "/deleteProduit/" + id_produit;
+        httpGet(urlParm);
+        var urlfindAll = url + "/findAllProduit";
+        var produits = httpGet(urlfindAll);
+        rebuildTable(produits);
     }
 
     function httpGet(theUrl)

@@ -1,0 +1,188 @@
+
+
+/** create Team **/
+.creat-team {
+    margin-top:50%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.cont-team {
+    width: 800px;
+    height: 880px;
+    background-color: white;
+    border-radius: 4px;
+    text-align: center;
+    /*padding: 20px;*/
+    position: relative;
+    border: 2px solid #5ba5af;
+}
+.cloose{
+    /*position: absolute;*/
+    top:0;
+    right: 14px;
+    color: white;
+    font-size: 30px;
+    transform: rotate(45deg);
+    cursor: pointer;
+}
+.back-close{
+    position: absolute;
+    top:5px;
+    width: 32px;
+    height: 22px;
+    right:5px;
+    background-color: #ab231b;
+    font-size: 42px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+}
+.back-close:hover{
+    background-color: red;
+}
+
+
+
+
+
+
+
+
+
+.container{
+    display: flex;
+    justify-content:space-between;
+}
+
+
+
+/* Start image */
+.image-preview{
+    margin:auto;
+    min-height: 100px;
+    width: 200px;
+    height: 200px;
+    margin-top: 15px;
+    text-align: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-weight: bold;
+    color: #CCCCCC;
+
+}
+
+.image-preview__image{
+    display:none;
+    width: 100%;
+    min-height: 100px;
+
+    width: 300px;
+    height: 200px;
+    margin-top: 15px;
+    text-align: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-weight: bold;
+    color: #CCCCCC;
+
+}
+
+
+.avatar-edit {
+    position: absolute;
+    top: 170px;
+    right: -70px;
+    border-style: double;
+    border: 3px solid #D6D6D6;
+    border-radius: 50%;
+    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+    /*background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);*/
+
+}
+.image{
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+
+}
+#inpFile {
+    display: none;
+}
+
+.avatar-edit .image {
+    position: relative;
+    z-index: 2;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    padding-top:5px;
+    border: 5px solid  floralwhite ;
+    line-height: 40px;
+    border-radius: 50%;
+    background: #D6D6D6;
+    vertical-align: middle;
+}
+.avatar-edit:hover > .image { background: #328da8; cursor:pointer; }
+.avatar-edit > .image > i { font-size: 24px !important; color: #fff !important; /*top:5px;*/}
+.avatar-edit:hover > .image > i { color: white !important; }
+
+/* Fin image */
+
+/* Start Formule */
+.formule{
+    margin-left: auto;
+    margin-right: auto
+}
+.label{
+    margin-top: 20px;
+    color:#328da8;
+}
+.input{
+    width:300px;
+    height: 40px;
+    padding: 0 22px;
+}
+.input:focus{
+    outline: none;
+}
+#desc{
+    width:300px;
+    height:175px;
+    padding:0 15px 100px 12px;
+    word-wrap:break-word;
+}
+#desc:focus{
+    outline:none;
+}
+
+
+/* Fin formule */
+
+.button{
+    width:300px;
+    height: 40px;
+    padding: 0 22px;
+    margin-left:100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.button:hover{
+    cursor:pointer;
+}
+.button:focus{
+    outline:none;
+}

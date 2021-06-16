@@ -8,7 +8,7 @@ import java.sql.Date;
 public class Produit {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_produit;
     private int id_categorie;
     private int id_emplacement;

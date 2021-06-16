@@ -30,7 +30,7 @@ INSERT INTO Produit VALUES (null,4,2,1,04511475,'EPhMRA','European Pharmaceutica
 INSERT INTO Produit VALUES (null,5,4,1,04511475,'EPHS','Essential Package of Hospital Services for Afghanistan','description_ATC',null,95.12,800,'Article en stock','2001-07-12',null,null);
 INSERT INTO Produit VALUES (null,6,4,1,04511475,'GD','General Directorate','description_ATC',null,200.00,800,'Article en stock','2001-06-12',null,null);
 select * from Produit;
-
+select id_produit,nom_produit from produit;
 
 /* Find produit par categorie */
 select * from Produit p where p.id_categorie in (select c.id_categorie from Categorie c where c.nom_categorie like '%bio%');
