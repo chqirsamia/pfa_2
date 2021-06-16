@@ -25,12 +25,30 @@ ProduitDAO ProduitDAO;
 	        return ProdComDAO.findByCommande(id);
 	    }
 	public int addProdCom(int id_produit, int idcom) {
-		ProdCom prodcom=new ProdCom();
+		/*ProdCom prodcom=new ProdCom();
 		prodcom.setCommande(commandeDAO.findById(idcom));
 		prodcom.setProduit(ProduitDAO.findProduitById_produit(id_produit));
 		prodcom.setPrix(ProduitDAO.findProduitById_produit(id_produit).getPrix_unitaire());
 		prodcom.setQuantite(1);
 prodcom.setTotal(ProduitDAO.findProduitById_produit(id_produit).getPrix_unitaire());
+		ProdComDAO.save(prodcom);*/
+		ProdCom prodcom=ProdComDAO.findByCommandeandProduct(idcom, id_produit);
+		if(prodcom !=null)
+		{
+			int addedqty=prodcom.getQuantite()+1;
+			prodcom.setQuantite(addedqty);
+			prodcom.setTotal(addedqty * prodcom.getPrix());
+		}
+		else {
+			 prodcom=new ProdCom();
+			prodcom.setCommande(commandeDAO.findById(idcom));
+			prodcom.setProduit(ProduitDAO.findProduitById_produit(id_produit));
+			prodcom.setPrix(ProduitDAO.findProduitById_produit(id_produit).getPrix_unitaire());
+			prodcom.setQuantite(1);
+	prodcom.setTotal(ProduitDAO.findProduitById_produit(id_produit).getPrix_unitaire());
+			
+			
+		}
 		ProdComDAO.save(prodcom);
 		return prodcom.getId();
 	}

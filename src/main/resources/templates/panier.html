@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  
+   <base href="/">
 <!--CODE CSS-->
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
@@ -27,10 +27,10 @@
   	body {
 	    background: #E0EEEE;/* linear-gradient(to right, #c04848, #480048); */
 	    min-height: 100vh
+	  
 	}
 	
 
-	
 	
 	.text-gray {
 	    color: #aaa
@@ -61,25 +61,29 @@
                                    <ul class="list-group shadow">
                
 	                    <!-- Custom content-->
-	                    <div class="row">
-	                   <div class="col">
+	                    <div class="row m-1">
+	                   <div class="col-sm-8">
 	                    	     <th:block th:each="prodInfo : ${list}">   
 	                    	    
                      <div class="row border rounded " th:with="product=${prodInfo.produit}" >
-                            <div>
-                           <a class="fas fa-trash icon-red" th:href="@{/commande/delete/{id}(id=${product.id})}"> </a>
+                            <div class=col-1>
+                           <a class="fas fa-trash icon-red" th:href="@{/commande/delete/{id}(id=${product.id_produit})}"> </a>
                             </div>    
-                            </div>
-                           <div class="col"><a><b th:value="${product.nom_produit}"></b></a></div>      
-                           <div th:replace="quantity :: quantity(${prodInfo.quantite},${product.id})">Quantité</div>
-                            <div>
-                             <span th:value="${product.prix}" ></span>
-                             <span th:value="${product.total}" ></span>
+                          
+                           <div class="col-6"><a><b th:text="${product.nom_produit}"></b></a></div> 
+                           <div class="col-6">
+                             <span th:text="${product.prix_unitaire}" ></span>
+                               </div> 
+                             <div class="col-1">
+                             <span th:text="${prodInfo.total}" ></span>
+                            </div>      
+                           <div th:replace="quantity :: quantity(${prodInfo.quantite},${product.id_produit})">Quantité</div>
+                             
                             </div>                     
-                  </th:block ></div> 
-          <div class="col" th:unless="${#lists.isEmpty(list)}" >
+                  </th:block >  </div></div> 
+          <div class="col-sm-4" th:unless="${#lists.isEmpty(list)}" >
           <div class="mt-2">
-          <span class="h3">TOTAL:<span th:value="${total}" ></span> </span>
+          <span class="h3">TOTAL:<span th:text="${total}" ></span> </span>
           </div>
           <div class="mt-2">
           <button class="btn btn-info">Confirmer</button>

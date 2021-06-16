@@ -37,7 +37,7 @@ public class ProdCom {
 	private int quantite;
 @Column(nullable=true,length=50)
 	
-	private double prix;
+	private float prix;
 @Column(nullable=true,length=50)
 
 private float total;
@@ -56,10 +56,10 @@ private float total;
 	public void setQuantite(int qte) {
 		this.quantite=qte;
 	}
-	public double getPrix() {
+	public float getPrix() {
 		return prix;
 	}
-	public void setPrix(double prix) {
+	public void setPrix(float prix) {
 		this.prix=prix;
 	}
 	@Transient

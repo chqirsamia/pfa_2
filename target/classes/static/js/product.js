@@ -222,9 +222,7 @@
                     </div>`
             cards.innerHTML += row;
               var add = document.getElementsByClassName('add');
-        }
-    }
-   
+         var num = add.length;
     function addP() {
                 var id =  $('.add').attr("value");
                 console.log('value = '+ id);
@@ -233,7 +231,7 @@
 for (var j = 0; j < num; j++) {
                 //comments[i].addEventListener('click', addP, false);
 
-                supp[j].addEventListener("click", (function(j){
+                add[j].addEventListener("click", (function(j){
                     return function() {
                         var id =  document.getElementsByClassName('add')[j].getAttribute("value");
                         console.log('value = '+ id);
@@ -244,7 +242,9 @@ for (var j = 0; j < num; j++) {
             }
 
 
-        
+      }
+    }
+      
    
     function addProduct(id_produit){
         var urlParm = url + "/addPoduit/"+id_produit+'-'+id;
@@ -281,3 +281,7 @@ for (var j = 0; j < num; j++) {
 
 
 })(jQuery);
+
+
+
+
