@@ -14,19 +14,15 @@
       <li class="nav-item"><a></a><li>
       <li class="nav-item ">
         
-        <a class="nav-link" style="font-size:20px" href="/acceuilA">Accueil <span class="sr-only">(current)</span></a>
+        <a class="nav-link" style="font-size:20px" th:href="@{/acceuil_admin/{id}(id=${id})}">Accueil <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item "><a></a></li>
       <li class="nav-item ">
-        <a class="nav-link" style="font-size:20px" href="/voitures">voitures <span class="sr-only">(current)</span></a>
+        <a class="nav-link" style="font-size:20px" th:href="@{/user-list/{id}(id=${id})}">Gerer Personnel <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item "><a></a></li>
       <li class="nav-item ">
-        <a class="nav-link" style="font-size:20px" href="/user-list">Admins <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item "><a></a></li>
-      <li class="nav-item ">
-        <a class="nav-link" style="font-size:20px" href="/demandes">Demandes <span class="sr-only">(current)</span></a>
+        <a class="nav-link" style="font-size:20px" th:href="@{/admin/profil/{id}(id=${id})}">Mon Profil <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item ">
         <a class="nav-link" style="font-size:20px" href="/">Deconnexion <span class="sr-only">(current)</span></a>

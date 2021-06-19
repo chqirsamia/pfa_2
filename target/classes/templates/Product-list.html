@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+<!--CODE CSS-->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<!--Fichiers-->
+	<link href="/css/style.css" rel="stylesheet" />
+	<link href="/css/inscription.css" rel="stylesheet" />
+	<link href="/css/validation.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/webjars/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <title>produits</title>
+  
+  <style type="text/css">
+  	body {
+	    background: #E0EEEE;/* linear-gradient(to right, #c04848, #480048); */
+	    min-height: 100vh
+	}
+	
+
+	
+	
+	.text-gray {
+	    color: #aaa
+	}
+
+  </style>
+</head>
+
+<body>
+
+<!-- Menu -->
+
+<div th:replace="fragments/navbar-employeur"></div>
+
+<section id="blog" class="py-3" style="background: url('/images/fond.png');background-size: cover;">
+   <div  style=" margin-top: -20px; margin-bottom: -20px;">
+		<div class="container-inscription" style="width:auto;margin-top:10px;" >
+            <div class="container" >
+            
+                <div class="row" style="margin-top: -100px;">
+                    <div class="wrap-inscription insc" style="height:auto; width:1500px;margin-left:auto;margin-right:auto;">
+                        <div class="container" style="margin-left:-120px;margin-right:auto;" >
+                            <div class="row" >
+                                    <span class="inscription-form-title" style="margin-left: auto;margin-right:auto;margin-top: -20px;font-size:400%;text-align:center;">
+                                       Les produits
+                                    </span>	
+                                    </div>
+                                   <ul class="list-group shadow">
+                <!-- list group item-->
+                <li class="list-group-item">
+	                    <!-- Custom content-->
+	                    <div class="row mt-0 font-weight-bold mb-2 dislay-4">
+	                    	     <div class="col-sm-2">
+	                    		<h5 class="text-center"><i class="fas fa-box-open"></i> Nom</h5>
+	                    	</div>
+	                    	<div class="col-sm-2">
+	                    		<h5 class="text-center"><i class="fas fa-box-open"></i> Code</h5>
+	                    	</div>
+	                    	<div class="col-sm-2">
+	                    		<h5 class="text-center"><i class="fas fa-box-open"></i> Price</h5>
+	                    	</div>
+	                    	<div class="col-sm-2">
+	                    		<h5 class="text-center"><i class="fas fa-box-open"></i> Quantity</h5>
+	                    	</div>
+	                    	<div class="col-sm-2">
+	                    	
+	                    		<h5 class="text-center"><i class="fas fa-box-open"></i> total</h5>
+	                    	</div>
+	                    	
+	                    	
+	                    	
+	                    	
+	                    	
+	                    </div>
+	                </li>  
+                             <div class="product-preview-container" th:each="prodInfo : ${list}">
+                             <div class="product-preview-container" th:with="product=${prodInfo.produit}" >
+          
+          <li class="list-group-item">
+	                    <!-- Custom content-->
+	                    <div class="row mt-0 font-weight-bold mb-2 dislay-4">
+	                    	     <div class="col-sm-2">
+	                    	     	                    		<h5 class="text-center"> <span th:utext="${product.nom_produit}"></span></h5>
+	                    	     
+	                    	</div>
+	                    	<div class="col-sm-2">
+	                    		<h5 class="text-center"> <span th:utext="${product.code}"></span></h5>
+	                    	</div>
+	                    	<div class="col-sm-2">
+	                    		<h5 class="text-center"> <span th:utext="${product.prix_unitaire}"></span></h5>
+	                    	</div>
+	                    	<div class="col-sm-2">
+	                    		<h5 class="text-center">  <span th:utext="${prodInfo.quantite}"></span></h5>
+	                    	</div>
+	                    	<div class="col-sm-2">
+	                    		<h5 class="text-center"><span th:utext="${prodInfo.total}"></span></h5>
+	                    	</div>
+	                    	
+	                    	
+	                    	
+	                    	
+	                    	
+	                    </div>
+	                </li>  
+            
+              
+            </li>
+             </ul>
+            </div> 
+          </div>
+                                    </div>
+ </div>
+  </div>                             
+        
+      </div>
+       
+      <br/>
+      
+    
+		 <!-- End -->
+        </div>
+        
+    </div>
+</div></div></div></div></div></div></section>
+<script type="text/javascript" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+		crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+</body>
+</html>
