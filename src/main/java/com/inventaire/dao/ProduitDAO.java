@@ -18,6 +18,10 @@ public interface ProduitDAO extends JpaRepository<Produit,Integer> {
     @Query("select p from Produit p where p.id_produit =?1")
     Produit findProduitById_produit(int id_produit);
 
+    /* Par Code */
+    @Query("select p from Produit p where p.code =?1")
+    Produit findProduitByCode(int code);
+
     /* Nom Produit */
     @Query("select p from Produit p where p.nom_produit like %?1%")
     List<Produit> findProduitByNom_produit(String nom_produit);

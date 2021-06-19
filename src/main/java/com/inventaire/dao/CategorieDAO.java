@@ -17,4 +17,7 @@ public interface CategorieDAO extends JpaRepository<Categorie, Integer> {
     @Query("select c from Categorie c where c.nom_categorie like ?1")
     Categorie findCategoriebyNom_categorie(String nom_categorie);
 
+    @Query("select c from Categorie c where c.id_categorie =?1")
+    Categorie findCategorieById_Categorie(int id_categorie);
+
 }

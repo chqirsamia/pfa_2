@@ -15,4 +15,7 @@ public interface EmplacementDAO extends JpaRepository<Emplacement, Integer> {
 
     @Query("select e from Emplacement e where e.nom_emplacement like ?1")
     Emplacement findEmplacementByNom_emplacement(String nom_emplacement);
+
+    @Query("select e from Emplacement e where e.id_emplacement =?1")
+    Emplacement findEmplacementById_Emplacement(int id_emplacement);
 }

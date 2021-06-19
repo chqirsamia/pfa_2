@@ -32,6 +32,10 @@ public class ProduitService {
         return produitDAO.findAll();
     }
 
+    public Produit findProduitById_produit(int id_produit){
+        return produitDAO.findProduitById_produit(id_produit);
+    }
+
     /* Cherecher Produit par : */
 
     public List<Produit> findProduitByNom_produit(String nom_produit){
@@ -114,12 +118,12 @@ public class ProduitService {
                                 int code,
                                 String categorie,
                                 String emplacement,
-                                String employee,
+
                                 float prix,
                                 int quantite,
                                 String etat_stock,
                                 Date date_cree){
-
+            int cle =0;
             Produit produit = new Produit();
             String fileName = StringUtils.cleanPath(file.getOriginalFilename());
             if (fileName.contains("..")) {
@@ -133,6 +137,17 @@ public class ProduitService {
 
             Categorie categorie1 = categorieDAO.findCategoriebyNom_categorie(categorie);
             Emplacement emplacement1 = emplacementDAO.findEmplacementByNom_emplacement(emplacement);
+
+            if( emplacement1 == null )
+            {
+                emplacement1.setId_emplacement(1);
+            }
+
+            if( categorie1 == null )
+            {
+                categorie1.setId_categorie(1);
+            }
+
             System.out.println("emplacement1.getId_emplacement() :"+emplacement1.getId_emplacement());
             produit.setNom_produit(nom_produit);
             produit.setTitre(titre);
@@ -145,7 +160,96 @@ public class ProduitService {
             produit.setQuantite(quantite);
             produit.setEtat_stock(etat_stock);
             produit.setDate_cree(date_cree);
-            produitDAO.save(produit);
+
+            List<Produit> ps = produitDAO.findAll();
+            for(int i=0 ; i<ps.size();i++){
+                int codes = ps.get(i).getCode();
+                if(code == codes){
+                    ps.get(i).setQuantite(quantite+ps.get(i).getQuantite());
+                    produitDAO.save(ps.get(i));
+                    cle=1;
+                }
+            }
+            if(cle == 0) {
+                produitDAO.save(produit);
+            }
+
 
     }
+
+
+    //**********************************************************************//
+    public void updateProduit(MultipartFile file,
+                                String nom_produit,
+                                String titre,
+                                String description,
+                                int code,
+                                String categorie,
+                                String emplacement,
+
+                                float prix,
+                                int quantite,
+                                String etat_stock,
+                                Date date_cree){
+
+
+
+        int cle =0;
+        Produit produit = new Produit();
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        if (fileName.contains("..")) {
+            System.out.println("not a a valid file");
+        }
+        try {
+            produit.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Categorie categorie1 = categorieDAO.findCategoriebyNom_categorie(categorie);
+        Emplacement emplacement1 = emplacementDAO.findEmplacementByNom_emplacement(emplacement);
+
+        if( emplacement1 == null )
+        {
+            emplacement1.setId_emplacement(1);
+        }
+
+        if( categorie1 == null )
+        {
+            categorie1.setId_categorie(1);
+        }
+
+        System.out.println("emplacement1.getId_emplacement() :"+emplacement1.getId_emplacement());
+        produit.setNom_produit(nom_produit);
+        produit.setTitre(titre);
+        produit.setDescription(description);
+        produit.setCode(code);
+        produit.setId_emplacement(emplacement1.getId_emplacement());
+        produit.setId_categorie(categorie1.getId_categorie());
+        produit.setId_employee(1);
+        produit.setPrix_unitaire(prix);
+        produit.setQuantite(quantite);
+        produit.setEtat_stock(etat_stock);
+        produit.setDate_modifier(date_cree);
+
+        List<Produit> ps = produitDAO.findAll();
+        for(int i=0 ; i<ps.size();i++){
+            int codes = ps.get(i).getCode();
+            if(code == codes){
+                produit.setId_produit(ps.get(i).getId_produit());
+                produitDAO.save(produit);
+                cle=1;
+            }
+        }
+        if(cle == 0) {
+            produitDAO.save(produit);
+        }
+
+
+
+
+    }
+
+
+
 }

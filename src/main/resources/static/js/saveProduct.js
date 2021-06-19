@@ -7,13 +7,18 @@
     $(".btn-grp").click(function(e) {
         e.preventDefault();
         $(".creat-team").css('display','flex');
+
     });
     $(".cloose").click(function(e) {
         e.preventDefault();
         $(".creat-team").css('display','none');
+
     });
 
-
+    document.getElementById("btn-grp").addEventListener("click",function(){
+        console.log("hi i am being clicked ");
+        init();
+    });
 
 
 
@@ -56,7 +61,25 @@
     });*/
 
 
+    function init(){
 
+
+        $("#form").attr('action','http://localhost:8080/CreateProduit');
+        document.getElementById("code").readOnly=false;
+        previewImage.setAttribute("src","images/innconue.png");
+        $("#nom_produit").val('');
+        $("#titre").val('');
+        $("#desc").val('');
+        $("#code").val('');
+        $("#categorie").val('categorie');
+        $("#categorieOption").val('categorie');
+        $("#emplacement").val('emplacement');
+        $("#emplacementOption").val('emplacement');
+        $("#prix").val('0.0');
+        $("#quantite").val('0');
+        $("#etat_stock").val('0');
+
+    }
 
 
 })(jQuery);

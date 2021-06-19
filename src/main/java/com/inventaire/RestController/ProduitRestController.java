@@ -95,4 +95,6 @@ public class ProduitRestController {
         return produitService.deleteProduit(id_produit);
     }
 
+
+
 }
