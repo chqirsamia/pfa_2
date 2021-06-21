@@ -63,8 +63,13 @@ public class AppController {
 		return "acceuilV";
 	}
 	
-	@GetMapping("/produits")
-	public String viewAdminHomePage(){
+	@GetMapping("/produit")
+	public String viewproduitnc(){
+		return "produit-list";
+	}
+	@GetMapping("/produits/{id}")
+	public String viewproduitc(Model model,@PathVariable("id") Long id){
+		model.addAttribute("id",id);
 		return "produit_interface_client";
 	}
 	@GetMapping("/user-list/{id}")

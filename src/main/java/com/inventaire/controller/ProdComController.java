@@ -72,8 +72,12 @@ public class ProdComController {
 		float total=0;
 		for( ProdCom produit : list ) {
 	           Produit prod= prodService.findProduitById(produit.getId());
-	           total=total+produit.getTotal();}
+	           total=total+produit.getTotal();
+	           int qte=produit.getQuantite();
+	           prodService.updateS(produit.getProduit() ,qte )    ;   
+		}
 		 comService.updateT(idcom,total,commande);
+		
 		
 		//prodcomService.deleteCommande(idcom);
 	
