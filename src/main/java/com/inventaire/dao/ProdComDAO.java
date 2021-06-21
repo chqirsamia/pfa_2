@@ -26,6 +26,7 @@ public interface ProdComDAO extends JpaRepository<ProdCom,Integer> {
 	 @Query("delete from  ProdCom p  where p.commande.id=?2 and p.produit.id_produit=?1")
 	 @Modifying
 	 public void delete(int pid,int cid);
+	
 
 	 
 }

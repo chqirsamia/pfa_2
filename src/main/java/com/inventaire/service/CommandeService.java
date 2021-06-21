@@ -36,4 +36,11 @@ public CommandeService(CommandeDAO CommandeDAO) {
 		 CommandeDAO.save(Commande);
 		 return Commande.getId();
 		}
+	public void updateT(int idcom, float total, Commande Commande) {
+		Commande.setTotal(total);
+		
+		
+	 CommandeDAO.save(Commande);
+		
+	}
 }

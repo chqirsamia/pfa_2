@@ -26,12 +26,15 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
         	
             redirectURL = "acceuil_admin/"+id;
         } else if (userDetails.hasRole("C")) {
-            redirectURL = "acceuil_client";
+            redirectURL = "acceuil_client/"+id;
         } else if (userDetails.hasRole("CO")) {
             redirectURL = "acceuil_collecteur/"+id;
         } 
         else if (userDetails.hasRole("E")) {
             redirectURL = "acceuil_employeur/"+id;
+        } 
+        else if (userDetails.hasRole("V")) {
+            redirectURL = "acceuil_verificateur/"+id;
         } 
          
         response.sendRedirect(redirectURL);

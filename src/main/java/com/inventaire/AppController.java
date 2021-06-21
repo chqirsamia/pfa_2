@@ -41,8 +41,10 @@ public class AppController {
 		return "acceuilA";
 	}
 	
-	@GetMapping("/acceuil_client")
-	public String viewClientHomePage(){
+	@GetMapping("/acceuil_client/{id}")
+	public String viewClientHomePage(Model model,@PathVariable("id") Long id){
+		model.addAttribute("id",id);
+
 		return "acceuilC";
 	}
 	@GetMapping("/acceuil_collecteur/{id}")
@@ -55,8 +57,16 @@ public class AppController {
 		model.addAttribute("id",id);
 		return "acceuilE";
 	}
+	@GetMapping("/acceuil_verificateur/{id}")
+	public String viewVerificateurHomePage(Model model,@PathVariable("id") Long id){
+		model.addAttribute("id",id);
+		return "acceuilV";
+	}
 	
-
+	@GetMapping("/produits")
+	public String viewAdminHomePage(){
+		return "produit_interface_client";
+	}
 	@GetMapping("/user-list/{id}")
 	public String showAdmin(Model model,@PathVariable("id") Long id) {		
 		model.addAttribute("list", UserService.getPersonnel());
@@ -121,6 +131,30 @@ public class AppController {
 	}
 	@GetMapping("/employeur/profil/{id}")
 	public String showProfile(Model model,@PathVariable("id") Long id) {
+   
+		User personnel=UserService.getUser(id);
+		
+		model.addAttribute("user",personnel);
+		return "profile-edit";
+	}
+	@GetMapping("/collecteur/profil/{id}")
+	public String showProfilco(Model model,@PathVariable("id") Long id) {
+   
+		User personnel=UserService.getUser(id);
+		
+		model.addAttribute("user",personnel);
+		return "profile-edit";
+	}
+	@GetMapping("/verificateur/profil/{id}")
+	public String showProfilv(Model model,@PathVariable("id") Long id) {
+   
+		User personnel=UserService.getUser(id);
+		
+		model.addAttribute("user",personnel);
+		return "profile-edit";
+	}
+	@GetMapping("/client/profil/{id}")
+	public String showProfilc(Model model,@PathVariable("id") Long id) {
    
 		User personnel=UserService.getUser(id);
 		
