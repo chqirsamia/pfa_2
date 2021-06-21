@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trip</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+          rel="stylesheet" type="text/css">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <link href="css/produit_interface_employee.css" rel="stylesheet">
+    <link href="css/saveProduct.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="nav">
+    <div class="nav-title">
+        <div class="nav-desc">
+
+<!--            <a th:href="@{/produit_interface_panier}"><p><i class="fa fa-arrow-right"></i></p></a>-->
+            <h1>Pharmacie</h1>
+            <p><i class="fa fa-heartbeat"></i></p>
+            <p><i class="fa fa-stethoscope"></i></p></div>
+        </div>
+</div>
+
+<!-- Bare de navigation -->
+<div class="container">
+
+    <nav>
+        <div class="onglets">
+            <p class="link">Nouveautés</p>
+            <p class="link">Homme</p>
+            <p class="link">Femme</p>
+            <p class="link">Enfant</p>
+            <p class="link">Cadeaux</p>
+            <form>
+                <input type="search" placeholder="Rechercher">
+            </form>
+
+        </div>
+    </nav>
+
+</div>
+<!-- Fin de la barre de navigation -->
+
+<!-- Header -->
+<header class="header">
+    <h1>C'est votre Pharmacie, votre chez-vous.</h1>
+    <button>Naviger<i class="fa fa-paper-plane"></i></button>
+</header>
+<!-- Fin Header -->
+<!-- Barre de trie -->
+<section class="recherche">
+    <div class="rech-trie">
+
+        <form method="get" action="">
+            <div class="boxContainer">
+                <table class="elementContainer">
+                    <tr>
+                        <td>
+                            <input id="txtSearch" type="text" class="search" placeholder="Search">
+                        </td>
+                        <td>
+                            <a href="#"><i class="material-icons">
+                                search
+                            </i></a>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+
+        <select class="option" name="chercherPar" id="chercherPar">
+            <option disabled="disabled" selected="selected">Chercher Par</option>
+            <option th:each="chercherPar :${chercherPar}" th:text="${chercherPar}"/>
+
+        </select>
+        <select class="option" name="subject" id="trierPar">
+            <option disabled="disabled" selected="selected">Trier Par</option>
+            <option th:each="trierPar :${trierPar}" th:text="${trierPar}"/>
+
+        </select>
+    </div>
+
+    <div class="grp">
+        <button type="submit" class="btn-grp" id="btn-grp" value="Submit">Ajouter un Produit</button>
+    </div>
+
+</section>
+<!--Fin  barre de trie -->
+<!-- Section Principale-->
+<section class="main" id="main">
+    <!-- Toutes les cartes -->
+    <div class="cards" id="cards" ><!--th:each="produit :${produits}"-->
+        <!--<div class="card" id="card">
+            <img  src="https://images.ctfassets.net/hrltx12pl8hq/3MbF54EhWUhsXunc5Keueb/60774fbbff86e6bf6776f1e17a8016b4/04-nature_721703848.jpg?fit=fill&w=480&h=270" alt="" ><!-th:src="*{'data:image/jpeg;base64,'+${produit.image}}" >->
+            <div class="card-header">
+                <h4 class="title"  th:text="${produit.nom_produit}" />
+                <h4 class="price" th:text="${produit.prix_unitaire}"/>
+            </div>
+            <div class="card-body">
+                <p th:text="${produit.description}"/>
+            </div>
+        </div>-->
+
+
+
+
+
+
+    </div>
+    <!-- Fin de toutes les cartes-->
+
+    <!-- Video de présentation -->
+    <div class="video">
+        <iframe src="https://www.youtube.com/embed/ME1a6utIj3c" allowfullscreen></iframe>
+    </div>
+    <!-- Fin de la video de la présentation-->
+
+</section>
+<!-- Fin de la section principale -->
+
+<!--Pied de page -->
+<footer>
+    <p>&copy; Contactez-nous au 06 42 18 96 54</p>
+    <div class="social-media">
+        <p><i class="fa fa-facebook"></i></p>
+        <p><i class="fa fa-twitter"></i></p>
+        <p><i class="fa fa-instagram"></i></p>
+        <p><i class="fa fa-linkedin-square"></i></p>
+    </div>
+</footer>
+<!-- Fin de page -->
+
+
+
+<script src="js/produit_interface_client.js"></script>
+
+
+
+</body>
+</html>
