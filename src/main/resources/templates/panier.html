@@ -67,26 +67,38 @@
 	                    	    
                      <div class="row border rounded " th:with="product=${prodInfo.produit}" >
                             <div class=col-1>
-                           <a class="fas fa-trash icon-red" th:href="@{/commande/delete/{id}(id=${product.id_produit})}"> </a>
+                            <script type="text/javascript">
+
+var id="[[${id}]]";
+contextPath="[[@{/}]]";
+var crsfHeaderName="[[${_csrf.token}]]";
+var productId="[[${prodInfo.produit.id_produit}]]";
+</script>
+                           <a class="fas fa-trash icon-red link-remove" th:href="@{'commandes/delete/'+${product.id_produit}+'-'+${prodInfo.commande.id}}"> </a>
                             </div>    
                           
                            <div class="col-6"><a><b th:text="${product.nom_produit}"></b></a></div> 
                            <div class="col-6">
-                             <span th:text="${product.prix_unitaire}" ></span>
+                            <a>prix:<span th:text="${product.prix_unitaire}" ></span></a> 
                                </div> 
-                             <div class="col-1">
-                             <span th:text="${prodInfo.total}" ></span>
-                            </div>      
+                             <div class="col-12">
+                             <span >Total:</span>
+                             <span th:id="'subtotal'+${product.id_produit}" class="h4 subTotal" >[[${prodInfo.total}]]</span>
+                            </div>  
+                            <div class="col-12">    
                            <div th:replace="quantity :: quantity(${prodInfo.quantite},${product.id_produit})">Quantité</div>
-                             
+                             </div>
                             </div>                     
                   </th:block >  </div></div> 
           <div class="col-sm-4" th:unless="${#lists.isEmpty(list)}" >
-          <div class="mt-2">
-          <span class="h3">TOTAL:<span th:text="${total}" ></span> </span>
+          <div>
+                    <span class="h3" >TOTAL:</span> </span>
           </div>
           <div class="mt-2">
-          <button class="btn btn-info">Confirmer</button>
+          <span class="h2"  id="totalt"></span> 
+          </div>
+          <div class="mt-2">
+          <button class="btn btn-info" id="confirmer">Confirmer</button>
           </div>
           </div>
           <div th:if ="${#lists.isEmpty(list)}"><h2 style="color:green;font-size:30px;padding-left:10px;" >Vous n'avez ajouter aucun produit</h2></div>
@@ -117,6 +129,15 @@
 		crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 	
-<script src="js/quantity.js"></script>
+                       <script type="text/javascript">
+
+
+contextPath="[[@{/}]]";
+var csrfHeaderName="[[${_csrf.headerName}]]";
+var csrfValue="[[${_csrf.token}]]";
+</script>
+<script src="js/addToPanier.js"></script>
+<script src="js/panier.js"></script>
+
 </body>
 </html>

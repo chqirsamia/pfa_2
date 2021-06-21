@@ -46,7 +46,7 @@ public class ProdComController {
     } 
 	@GetMapping("/commandes/panier/{idcom}")
 	public String viewpanier(Model model,@PathVariable("idcom") int idcom){
-		model.addAttribute("idcom",idcom);
+		model.addAttribute("id",idcom);
 		List<ProdCom> list=prodcomService.findByCommande(idcom);
 		//List<Produit> listpro=new ArrayList<Produit>();
 		/*for( ProdCom produit : list ) {

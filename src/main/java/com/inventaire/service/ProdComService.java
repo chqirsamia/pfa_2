@@ -1,6 +1,8 @@
 package com.inventaire.service;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,8 +11,10 @@ import com.inventaire.dao.ProduitDAO;
 import com.inventaire.dao.ProdComDAO;
 import com.inventaire.model.Commande;
 import com.inventaire.model.ProdCom;
+import com.inventaire.model.Produit;
 
 @Service
+@Transactional
 public class ProdComService {
 	@Autowired
 	
@@ -72,6 +76,20 @@ prodcom.setTotal(ProduitDAO.findProduitById_produit(id_produit).getPrix_unitaire
 		}
 		ProdComDAO.save(prodcom);
 		return addedqty;
+	}
+	public float  updateQuantity(int pid,int qty,int cid) {
+		
+		ProdComDAO.updateQuantity(qty, pid, cid);
+		Produit product=ProduitDAO.findProduitById_produit(pid);
+		System.out.print("voila:"+pid+qty+cid);
+		float subtotal=product.getPrix_unitaire()*qty;
+		return subtotal;
+	}
+public void delete(int pid,int cid) {
+		
+		ProdComDAO.delete( pid, cid);
+		
+	
 	}
 	
 }
