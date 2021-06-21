@@ -43,12 +43,13 @@
 
 <!-- Menu -->
 
-<div th:replace="fragments/navbar-admin"></div>
+<div th:replace="fragments/navbar-employeur"></div>
 
 <section id="blog" class="py-3" style="background: url('/images/fond.png');background-size: cover;">
    <div  style=" margin-top: -20px; margin-bottom: -20px;">
 		<div class="container-inscription" style="width:auto;margin-top:10px;" >
             <div class="container" >
+            
                 <div class="row" style="margin-top: -100px;">
                     <div class="wrap-inscription insc" style="height:auto; width:1500px;margin-left:auto;margin-right:auto;">
                         <div class="container" style="margin-left:-120px;margin-right:auto;" >
@@ -56,38 +57,78 @@
                                     <span class="inscription-form-title" style="margin-left: auto;margin-right:auto;margin-top: -20px;font-size:400%;text-align:center;">
                                        Les produits
                                     </span>	
-                             <div class="product-preview-container" th:each="prodInfo : ${paginationProducts.list}">
-         <ul>
-            <li><img class="product-image"
-               th:src="@{|/productImage?code=${prodInfo.code}|}" /></li>
-            <li>Code: <span th:utext="${prodInfo.code}"></span></li>
-            <li>Name: <span th:utext="${prodInfo.name}"></span></li>
-            <li>Price: <span th:utext="${#numbers.formatDecimal(prodInfo.price,3,2,'COMMA')}"></span></li>
-            <li>
-               <a th:href="@{|/buyProduct?code=${prodInfo.code}|}">Buy Now</a>
+                                    </div>
+                                   <ul class="list-group shadow">
+                <!-- list group item-->
+                <li class="list-group-item">
+	                    <!-- Custom content-->
+	                    <div class="row mt-0 font-weight-bold mb-2 dislay-4">
+	                    	     <div class="col-sm-2">
+	                    		<h5 class="text-center"><i class="fas fa-box-open"></i> Nom</h5>
+	                    	</div>
+	                    	<div class="col-sm-2">
+	                    		<h5 class="text-center"><i class="fas fa-box-open"></i> Code</h5>
+	                    	</div>
+	                    	<div class="col-sm-2">
+	                    		<h5 class="text-center"><i class="fas fa-box-open"></i> Price</h5>
+	                    	</div>
+	                    	<div class="col-sm-2">
+	                    		<h5 class="text-center"><i class="fas fa-box-open"></i> Quantity</h5>
+	                    	</div>
+	                    	<div class="col-sm-2">
+	                    	
+	                    		<h5 class="text-center"><i class="fas fa-box-open"></i> total</h5>
+	                    	</div>
+	                    	
+	                    	
+	                    	
+	                    	
+	                    	
+	                    </div>
+	                </li>  
+                             <div class="product-preview-container" th:each="prodInfo : ${list}">
+                             <div class="product-preview-container" th:with="product=${prodInfo.produit}" >
+          
+          <li class="list-group-item">
+	                    <!-- Custom content-->
+	                    <div class="row mt-0 font-weight-bold mb-2 dislay-4">
+	                    	     <div class="col-sm-2">
+	                    	     	                    		<h5 class="text-center"> <span th:utext="${product.nom_produit}"></span></h5>
+	                    	     
+	                    	</div>
+	                    	<div class="col-sm-2">
+	                    		<h5 class="text-center"> <span th:utext="${product.code}"></span></h5>
+	                    	</div>
+	                    	<div class="col-sm-2">
+	                    		<h5 class="text-center"> <span th:utext="${product.prix_unitaire}"></span></h5>
+	                    	</div>
+	                    	<div class="col-sm-2">
+	                    		<h5 class="text-center">  <span th:utext="${prodInfo.quantite}"></span></h5>
+	                    	</div>
+	                    	<div class="col-sm-2">
+	                    		<h5 class="text-center"><span th:utext="${prodInfo.total}"></span></h5>
+	                    	</div>
+	                    	
+	                    	
+	                    	
+	                    	
+	                    	
+	                    </div>
+	                </li>  
+            
+              
             </li>
-            <!-- For Manager edit Product -->
-            <th:block sec:authorize="hasAuthority('ROLE_MANAGER')">
-               <li>
-                 <a style="color:red;"
-                    th:href="@{|/admin/product?code=${prodInfo.code}|}">Edit Product</a>
-               </li>
-            </th:block>
-         </ul>
+             </ul>
+            </div> 
+          </div>
+                                    </div>
+ </div>
+  </div>                             
+        
       </div>
        
       <br/>
-      <div class="page-navigator" th:if="${paginationProducts.totalPages > 1}">
-         <th:block th:each="page : ${paginationProducts.navigationPages}">
-         
-            <a th:href="@{|/productList?page=${page}|}" th:if="${page != -1}"
-               class="nav-item" th:utext="${page}"></a>
-               
-            <span class="nav-item" th:if="${page == -1}"> ... </span>
-             
-         </th:block>
-      </div>
-             
+      
     
 		 <!-- End -->
         </div>

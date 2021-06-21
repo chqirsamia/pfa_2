@@ -30,7 +30,7 @@ private TestEntityManager entityManager;
 		Produit product=entityManager.find(Produit.class, 1);
 		ProdCom prod=new ProdCom();
 		prod.setCommande(commande);
-		prod.setProduct(product);
+		prod.setProduit(product);
 		prod.setPrix(product.getPrix_unitaire());
 		prod.setQuantite(5);
 		prod.setTotal(product.getPrix_unitaire()*5);

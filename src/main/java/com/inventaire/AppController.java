@@ -50,6 +50,11 @@ public class AppController {
 		model.addAttribute("id",id);
 		return "acceuilCO";
 	}
+	@GetMapping("/acceuil_employeur/{id}")
+	public String viewEmployeurHomePage(Model model,@PathVariable("id") Long id){
+		model.addAttribute("id",id);
+		return "acceuilE";
+	}
 	
 
 	@GetMapping("/user-list/{id}")
@@ -114,7 +119,14 @@ public class AppController {
 		model.addAttribute("user",personnel);
 		return "profile-edit";
 	}
-	
+	@GetMapping("/employeur/profil/{id}")
+	public String showProfile(Model model,@PathVariable("id") Long id) {
+   
+		User personnel=UserService.getUser(id);
+		
+		model.addAttribute("user",personnel);
+		return "profile-edit";
+	}
 	
 	@PostMapping("/process_signup")
 	public String processSignUp(User user) {

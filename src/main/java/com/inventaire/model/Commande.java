@@ -19,19 +19,19 @@ public class Commande {
 		private String nom;
 		@Column(nullable=true,length=50)
 		private String prenom;
-		@Column(nullable=false,length=100)
+		@Column(length=100)
 		private String email;
-		@Column(nullable=false,length=10)
+		@Column(length=10)
 		private String sexe;
-		@Column(nullable=false,length=10)
+		@Column(length=10)
 		private String tel;
-		@Column(nullable=false,length=100)
+		@Column(length=100)
 		private Date date_commande;
-		@Column(nullable=false,length=100)
+		@Column(length=100)
 		private float total;
-		@Column(nullable=false,length=100)
+		@Column(length=100)
 		private String etat;
-		@Column(nullable=false,length=100)
+		@Column(length=100)
 		private Long id_employeur ;//employeur qui a entre la commande
 		public int getId() {
 			return id;

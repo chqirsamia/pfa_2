@@ -43,15 +43,21 @@
 
 <!-- Menu -->
 
-<div th:replace="fragments/navbar-admin"></div>
+<div th:replace="fragments/navbar-employeur"></div>
 
 <section id="blog" class="py-3" style="background: url('/images/fond.png');background-size: cover;">
    <div  style=" margin-top: -20px; margin-bottom: -20px;">
 		<div class="container-inscription" style="width:auto;margin-top:10px;" >
             <div class="container" >
+            
                 <div class="row" style="margin-top: -100px;">
                     <div class="wrap-inscription insc" style="height:auto; width:1500px;margin-left:auto;margin-right:auto;">
                         <div class="container" style="margin-left:-120px;margin-right:auto;" >
+                        <br>
+
+				<a th:href="@{/commandes/newCommande}" class="btn btn-info" style="margin-left:50px;">Ajouter une commande</a>
+			<br>
+			<br>
                             <div class="row" >
                                     <span class="inscription-form-title" style="margin-left: auto;margin-right:auto;margin-top: -20px;font-size:400%;text-align:center;">
                                        Liste des commandes externes effectuées 
@@ -89,9 +95,9 @@
 	                    		<div class="row  border border-info rounded" style="margin-right:0.5px;">
 	                    		
             
-	                    					<h6><i class="fa fa-long-arrow-right mr-1 mb-1"></i><a style="font-weight:bold;color:cornflowerblue"> Numéro demande : </a> <a th:text="${orderInfo.orderNum}" ></a></h6>
-	                    					<h6><i class="fa fa-long-arrow-right mr-1 mb-1"></i><a style="font-weight:bold;color:cornflowerblue"> Date de la commande : </a><a th:text="${#dates.format(orderInfo.orderDate,'dd-MM-yyyy HH:mm')}" ></a></h6>
-	                    					<h6><i class="fa fa-long-arrow-right mr-1 mb-1"></i><a style="font-weight:bold;color:cornflowerblue"> Prix : </a><a th:text="${#numbers.formatDecimal(orderInfo.amount,3,2,'COMMA')}" ></a>Dhs</h6>
+	                    					<h6><i class="fa fa-long-arrow-right mr-1 mb-1"></i><a style="font-weight:bold;color:cornflowerblue"> Numéro demande : </a> <a th:text="${orderInfo.id}" ></a></h6>
+	                    					
+	                    					<h6><i class="fa fa-long-arrow-right mr-1 mb-1"></i><a style="font-weight:bold;color:cornflowerblue"> Prix : </a><a th:text="${orderInfo.total}" ></a>Dhs</h6>
 	                    					
 	                    				
 	                    				
@@ -104,10 +110,10 @@
 	                    	<div class="col-sm-3">
 	                    		<div class="row  border border-info rounded">
 	       		
-	                    					<h6><i class="fa fa-long-arrow-right mr-1 mb-1"></i><a style="font-weight:bold;color:cornflowerblue"> Nom : </a><a th:text="${orderInfo.customerName}" ></a></h6>
-	                    					<h6><i class="fa fa-long-arrow-right mr-1 mb-1"></i><a style="font-weight:bold;color:cornflowerblue"> Prénom : </a><a th:text="${orderInfo.customerEmail}" ></a></h6>
-	                    					<h6><i class="fa fa-long-arrow-right mr-1 mb-1"></i><a style="font-weight:bold;color:cornflowerblue"> Email : </a><a th:text="hhhh" ></a></h6>
-	                    					<h6><i class="fa fa-long-arrow-right mr-1 mb-1"></i><a style="font-weight:bold;color:cornflowerblue"> Numéro de téléphone : </a><a th:text="hhhh" ></a></h6>
+	                    					<h6><i class="fa fa-long-arrow-right mr-1 mb-1"></i><a style="font-weight:bold;color:cornflowerblue"> Nom : </a><a th:text="${orderInfo.Nom}" ></a></h6>
+	                    					<h6><i class="fa fa-long-arrow-right mr-1 mb-1"></i><a style="font-weight:bold;color:cornflowerblue"> Prénom : </a><a th:text="${orderInfo.Prenom}" ></a></h6>
+	                    					<h6><i class="fa fa-long-arrow-right mr-1 mb-1"></i><a style="font-weight:bold;color:cornflowerblue"> Email : </a><a th:text="${orderInfo.Prenom}" ></a></h6>
+	                    					<h6><i class="fa fa-long-arrow-right mr-1 mb-1"></i><a style="font-weight:bold;color:cornflowerblue"> Numéro de téléphone : </a><a th:text="${orderInfo.tel}" ></a></h6>
 	                    					
 	                    				
 	                    				
@@ -119,7 +125,7 @@
 							<div class="col-sm-3">
 	                    	
 	                    	
-							<td><a th:href="@{commandes/produits/{id}(id=${demande.id})}" style="margin-left:70px;">voir les produits</a></td>
+							<td><a th:href="@{/commandes/produits/{id}(id=${orderInfo.id})}"  style="margin-left:70px;">voir les produits</a></td>
 								
 	                    	</div>
 	                    </div>

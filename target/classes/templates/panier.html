@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  
+   <base href="/">
 <!--CODE CSS-->
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
@@ -27,10 +27,10 @@
   	body {
 	    background: #E0EEEE;/* linear-gradient(to right, #c04848, #480048); */
 	    min-height: 100vh
+	  
 	}
 	
 
-	
 	
 	.text-gray {
 	    color: #aaa
@@ -55,72 +55,53 @@
                         <div class="container" style="margin-left:-120px;margin-right:auto;" >
                             <div class="row" >
                                     <span class="inscription-form-title" style="margin-left: auto;margin-right:auto;margin-top: -20px;font-size:400%;text-align:center;">
-                                       Les produits
+                                       Panier
                                     </span>	
                                     </div>
                                    <ul class="list-group shadow">
-                <!-- list group item-->
-                <li class="list-group-item">
+               
 	                    <!-- Custom content-->
-	                    <div class="row mt-0 font-weight-bold mb-2 dislay-4">
-	                    	     <div class="col-sm-2">
-	                    		<h5 class="text-center"><i class="fas fa-box-open"></i> Nom</h5>
-	                    	</div>
-	                    	<div class="col-sm-2">
-	                    		<h5 class="text-center"><i class="fas fa-box-open"></i> Code</h5>
-	                    	</div>
-	                    	<div class="col-sm-2">
-	                    		<h5 class="text-center"><i class="fas fa-box-open"></i> Price</h5>
-	                    	</div>
-	                    	<div class="col-sm-2">
-	                    		<h5 class="text-center"><i class="fas fa-box-open"></i> Quantity</h5>
-	                    	</div>
-	                    	<div class="col-sm-2">
-	                    	
-	                    		<h5 class="text-center"><i class="fas fa-box-open"></i> total</h5>
-	                    	</div>
-	                    	
-	                    	
-	                    	
-	                    	
-	                    	
-	                    </div>
-	                </li>  
-                             <div class="product-preview-container" th:each="prodInfo : ${list}">
-                             <div class="product-preview-container" th:with="product=${prodInfo.produit}" >
-          
-          <li class="list-group-item">
-	                    <!-- Custom content-->
-	                    <div class="row mt-0 font-weight-bold mb-2 dislay-4">
-	                    	     <div class="col-sm-2">
-	                    	     	                    		<h5 class="text-center"> <span th:utext="${product.nom_produit}"></span></h5>
-	                    	     
-	                    	</div>
-	                    	<div class="col-sm-2">
-	                    		<h5 class="text-center"> <span th:utext="${product.code}"></span></h5>
-	                    	</div>
-	                    	<div class="col-sm-2">
-	                    		<h5 class="text-center"> <span th:utext="${product.prix_unitaire}"></span></h5>
-	                    	</div>
-	                    	<div class="col-sm-2">
-	                    		<h5 class="text-center">  <span th:utext="${prodInfo.quantite}"></span></h5>
-	                    	</div>
-	                    	<div class="col-sm-2">
-	                    		<h5 class="text-center"><span th:utext="${prodInfo.total}"></span></h5>
-	                    	</div>
-	                    	
-	                    	
-	                    	
-	                    	
-	                    	
-	                    </div>
-	                </li>  
-            
-              
-            </li>
-             </ul>
-            </div> 
+	                    <div class="row m-1">
+	                   <div class="col-sm-8">
+	                    	     <th:block th:each="prodInfo : ${list}">   
+	                    	    
+                     <div class="row border rounded " th:with="product=${prodInfo.produit}" >
+                            <div class=col-1>
+                            <script type="text/javascript">
+
+var id="[[${id}]]";
+contextPath="[[@{/}]]";
+var crsfHeaderName="[[${_csrf.token}]]";
+var productId="[[${prodInfo.produit.id_produit}]]";
+</script>
+                           <a class="fas fa-trash icon-red link-remove" th:href="@{'commandes/delete/'+${product.id_produit}+'-'+${prodInfo.commande.id}}"> </a>
+                            </div>    
+                          
+                           <div class="col-6"><a><b th:text="${product.nom_produit}"></b></a></div> 
+                           <div class="col-6">
+                            <a>prix:<span th:text="${product.prix_unitaire}" ></span></a> 
+                               </div> 
+                             <div class="col-12">
+                             <span >Total:</span>
+                             <span th:id="'subtotal'+${product.id_produit}" class="h4 subTotal" >[[${prodInfo.total}]]</span>
+                            </div>  
+                            <div class="col-12">    
+                           <div th:replace="quantity :: quantity(${prodInfo.quantite},${product.id_produit})">Quantité</div>
+                             </div>
+                            </div>                     
+                  </th:block >  </div></div> 
+          <div class="col-sm-4" th:unless="${#lists.isEmpty(list)}" >
+          <div>
+                    <span class="h3" >TOTAL:</span> </span>
           </div>
+          <div class="mt-2">
+          <span class="h2"  id="totalt"></span> 
+          </div>
+          <div class="mt-2">
+          <button class="btn btn-info" id="confirmer">Confirmer</button>
+          </div>
+          </div>
+          <div th:if ="${#lists.isEmpty(list)}"><h2 style="color:green;font-size:30px;padding-left:10px;" >Vous n'avez ajouter aucun produit</h2></div>
                                     </div>
  </div>
   </div>                             
@@ -147,5 +128,16 @@
 		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 		crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+	
+                       <script type="text/javascript">
+
+
+contextPath="[[@{/}]]";
+var csrfHeaderName="[[${_csrf.headerName}]]";
+var csrfValue="[[${_csrf.token}]]";
+</script>
+<script src="js/addToPanier.js"></script>
+<script src="js/panier.js"></script>
+
 </body>
 </html>
