@@ -5,6 +5,7 @@ import com.inventaire.model.Produit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -97,6 +98,16 @@ public class ProduitService {
         produitDAO.deleteAll();
         return "Touts les produits ont été supprimé avec succes!";
     }
+
+	public void updateS(Produit produit,int qte) {
+		int quantite=produit.getQuantite();
+		if(quantite-qte>0)
+		produit.setQuantite(quantite-qte);
+		else
+			produit.setQuantite(0);	
+	 produitDAO.save(produit);
+		
+	}
 
 	
 }

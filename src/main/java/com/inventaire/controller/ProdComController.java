@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.inventaire.model.Commande;
+import com.inventaire.model.Panier;
 import com.inventaire.model.ProdCom;
 import com.inventaire.model.Produit;
 import com.inventaire.service.CommandeService;
@@ -20,9 +22,13 @@ import com.inventaire.service.ProduitService;
 public class ProdComController {
 	private final ProdComService  prodcomService ;
 	private final CommandeService  comService ;
-	public ProdComController(ProdComService  prodcomService,CommandeService  comService) {
+	private final ProduitService  prodService ;
+	
+
+	public ProdComController(ProdComService  prodcomService,CommandeService  comService,ProduitService  prodService) {
 		this.prodcomService  =prodcomService;
 		this.comService = comService;
+		this.prodService = prodService;
 	}
 	
 	@GetMapping("/commandes/produits/{idcom}")
@@ -47,7 +53,7 @@ public class ProdComController {
 	@GetMapping("/commandes/panier/{idcom}")
 	public String viewpanier(Model model,@PathVariable("idcom") int idcom){
 		model.addAttribute("id",idcom);
-		List<ProdCom> list=prodcomService.findByCommande(idcom);
+		List<Panier> list=prodcomService.findpanierByCommande(idcom);
 		//List<Produit> listpro=new ArrayList<Produit>();
 		/*for( ProdCom produit : list ) {
            Produit prod= ProduitService.findProduitById(produit.getId());
@@ -57,5 +63,24 @@ public class ProdComController {
 		model.addAttribute("total",commande.getTotal());
 		model.addAttribute("list",list);
 		return "panier";
+	}  
+	@GetMapping("/commandes/deletepanier/{idcom}")
+	public String deletepanier(Model model,@PathVariable("idcom") int idcom){
+		model.addAttribute("id",idcom);
+		Commande commande=comService.findbyId(idcom);
+		List<ProdCom> list=prodcomService.findByCommande(idcom);
+		float total=0;
+		for( ProdCom produit : list ) {
+	           Produit prod= prodService.findProduitById(produit.getId());
+	           total=total+produit.getTotal();
+	           int qte=produit.getQuantite();
+	           prodService.updateS(produit.getProduit() ,qte )    ;   
+		}
+		 comService.updateT(idcom,total,commande);
+		
+		
+		//prodcomService.deleteCommande(idcom);
+	
+		return "redirect:/employeur/commandes";
 	}  
 }
