@@ -62,8 +62,8 @@
 
         for (var i = 0; i < data.length; i++) {
             var row = `<div class="card">
-                          <img src="https://images.ctfassets.net/hrltx12pl8hq/3MbF54EhWUhsXunc5Keueb/60774fbbff86e6bf6776f1e17a8016b4/04-nature_721703848.jpg?fit=fill&w=480&h=270" alt="">
-                          <div class="card-header">
+    <img src="data:image/jpeg;base64,`+data[i].image+`" alt="">
+                              <div class="card-header">
                             <div class="card-title">
                             <h4 class="title">`+data[i].nom_produit+`</h4>
                             <p id="date_cree">créé le `+data[i].date_cree+`</p>

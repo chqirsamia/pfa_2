@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+      <base href="/">
     <title>Trip</title>
 
     <!-- Bootstrap Core CSS -->
@@ -18,38 +19,24 @@
 
 
     <link href="css/produit_interface_employee.css" rel="stylesheet">
+    <link href="css/saveProduct.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 
-<body style="background-color:rgb(192,192,192);height:92%">
+<body>
+
 <div class="nav">
     <div class="nav-title">
         <div class="nav-desc">
-            <h1>InventSH</h1>
+            <h1>Pharmacie</h1>
             <p><i class="fa fa-heartbeat"></i></p>
             <p><i class="fa fa-stethoscope"></i></p></div>
     </div>
 </div>
 
 <!-- Bare de navigation -->
-<div class="container">
 
-    <nav>
-        <div class="onglets">
-            <p class="link">Nouveautés</p>
-            <p class="link">Homme</p>
-            <p class="link">Femme</p>
-            <p class="link">Enfant</p>
-            <p class="link">Cadeaux</p>
-            <form>
-                <input type="search" placeholder="Rechercher">
-            </form>
-
-        </div>
-    </nav>
-
-</div>
 <!-- Fin de la barre de navigation -->
 
 <!-- Header -->
@@ -91,8 +78,9 @@
 
         </select>
     </div>
+
     <div class="grp">
-        <button type="submit" class="btn-grp" value="Submit">Ajouter un Produit</button>
+        <button type="submit" class="btn-grp" id="btn-grp" value="Submit">Ajouter un Produit</button>
     </div>
 
 </section>
@@ -140,9 +128,72 @@
     </div>
 </footer>
 <!-- Fin de page -->
+<div class="creat-team">
+    <div class="cont-team">
+        <div class="back-close">
+            <div class="cloose">+</div>
+        </div>
+    <form action="#" id="form" th:action="@{/CreateProduit}" th:object="${produit}" method="POST" enctype="multipart/form-data" name="main_form">
+        <div class="container">
+            <div class="image">
+
+                <div class="image-preview" id="imagePreview" >
+                    <img  src="images/innconue.png" alt="" class="image-preview__image">
+                    <input class="input" type="file"  name="file" id="inpFile" accept=".png, .jpg, .jpeg">
+                    <div class="avatar-edit">
+                        <label class="image" for="inpFile"><i class="fa fa-pencil" aria-hidden="true"></i></label>
+                    </div>
+                </div>
+                <div class="label"><label for="nom_produit">Produit</label></div>
+                <input class="input" id="nom_produit" th:field="*{nom_produit}" name="nom_produit" type="text" placeholder="Enter nom de produit" >
+                <div class="label"><label for="titre">Titre</label></div>
+                <input class="input" th:field="*{titre}" name="titre" id="titre" type="text" placeholder="Enter titre produit">
+               <div class="label"><label for="desc">Description</label></div>
+                <textarea th:field="*{description}" name="description" id="desc" type="text" placeholder="Enter Description" ></textarea>
+                <!--<div><label for="ava">Image</label></div>
+                <input type="file" id="ava" type="file" name="myImage" accept="image/x-png,image/gif,image/jpeg"  title="Choose avatar">-->
+            </div>
+            <div class="formule">
+                <div class="label"><label for="code">Code</label></div>
+                <input class="input" th:field="*{code}" name="code" id="code"  type="text" placeholder="Enter code">
+                <div class="label"><label for="categorie">Categorie</label></div>
+                <!--<input class="input"  name="categorie"  type="text" placeholder="Enter Categorie">-->
+
+                <select class="option" name="categorie" id="categorie" style="width:300px;" required>
+                    <option disabled="disabled" id="categorieOption" selected="selected">Categorie</option>
+                    <option th:each="categorie :${categories}" th:text="${categorie.nom_categorie}"/>
+                </select>
+
+                <div class="label"><label for="emplacement">Emplacement</label></div>
+<!--                <input class="input" name="emplacement"  type="text" placeholder="Enter emplacement">-->
+
+                <select class="option" name="emplacement" id="emplacement" style="width:300px;" required>
+                    <option  disabled="disabled" id="emplacementOption" selected="selected">Emplacement</option>
+                    <option th:each="emplacement :${emplacements}" th:text="${emplacement.nom_emplacement}"/>
+                </select>
+
+                <!--<div class="label"><label for="employee">Employee</label></div>
+                <input class="input" name="employee" id="employee"  type="text" placeholder="Enter employee">-->
+                <div class="label"><label for="prix">Prix</label></div>
+                <input class="input" th:field="*{prix_unitaire}" id="prix" name="prix_unitaire" type="text" placeholder="Enter prix" required>
+                <div class="label"><label for="quantite">Quantite</label></div>
+                <input class="input" th:field="*{quantite}" name="quantite" id="quantite"  type="text" placeholder="Enter quantite">
+                <div class="label"><label for="etat_stock">Etat stock</label></div>
+                <input class="input" th:field="*{etat_stock}" id="etat_stock" name="etat_stock"  type="text" placeholder="Enter etat en stock">
+                <div class="label"><label for="date_cree">Date</label></div>
+                <input class="input" type="date" th:field="*{date_cree}" name="date_cree" id="date_cree" min='1899-01-01' title="Wrong min date" required>
+            </div>
+        </div>
+        <input class="button" type="submit" value="Send" name="submit">
+    </form>
+
+</div>
+</div>
+
 
 <script src="js/produit_interface_employee1.js"></script>
 <script src="js/produit_interface_employee2.js"></script>
+<script src="js/saveProduct.js"></script>
 
 
 </body>

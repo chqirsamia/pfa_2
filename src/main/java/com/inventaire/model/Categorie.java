@@ -12,7 +12,7 @@ public class Categorie {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id_categorie;
     private String nom_categorie;
-    private String titre;
+    
     private String description;
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
@@ -21,10 +21,10 @@ public class Categorie {
     private Date date_modifier;
     private Date date_suppr;
 
-    public Categorie(int id_categorie, String nom_categorie, String titre, String description, String image, Date date_cree, Date date_modifier, Date date_suppr) {
+    public Categorie(int id_categorie, String nom_categorie, String description, String image, Date date_cree, Date date_modifier, Date date_suppr) {
         this.id_categorie = id_categorie;
         this.nom_categorie = nom_categorie;
-        this.titre = titre;
+     
         this.description = description;
         this.image = image;
         this.date_cree = date_cree;
@@ -51,13 +51,7 @@ public class Categorie {
         this.nom_categorie = nom_categorie;
     }
 
-    public String getTitre() {
-        return titre;
-    }
-
-    public void setTitre(String titre) {
-        this.titre = titre;
-    }
+   
 
     public String getDescription() {
         return description;

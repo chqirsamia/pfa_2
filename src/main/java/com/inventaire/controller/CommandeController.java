@@ -29,9 +29,10 @@ public class CommandeController {
     CommandeService commandeService;
 	  @Autowired
 	    ProduitDAO produitDAO;
-	@GetMapping("/employeur/commandes")
-	public String viewcommandes(Model model){
+	@GetMapping("/employeur/commandes/{id}")
+	public String viewcommandes(Model model,@PathVariable("id") Long id){
 		List<Commande> list=commandeService.findCommandeExterne();
+		model.addAttribute("id",id);
 		model.addAttribute("list",list);
 		return "commande";
 	} 

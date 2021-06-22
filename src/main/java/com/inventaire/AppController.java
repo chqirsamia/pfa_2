@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.inventaire.CustomUserDetailsService;
 import com.inventaire.UserRepository;
+import com.inventaire.model.ProduitsNonCommandes;
+import com.inventaire.service.ProduitsNonCommandesService;
 import com.inventaire.User;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -29,6 +31,8 @@ public class AppController {
     private UserRepository repo;
 	@Autowired
 	private CustomUserDetailsService  UserService ;
+	@Autowired
+	private ProduitsNonCommandesService  pncsevice;
 
 
 	@GetMapping("")
@@ -70,6 +74,7 @@ public class AppController {
 	@GetMapping("/produits/{id}")
 	public String viewproduitc(Model model,@PathVariable("id") Long id){
 		model.addAttribute("id",id);
+		pncsevice.initProduitsNonCommandes(id);
 		return "produit_interface_client";
 	}
 	@GetMapping("/user-list/{id}")
@@ -128,7 +133,7 @@ public class AppController {
 	
 	@GetMapping("/admin/profil/{id}")
 	public String showProfil(Model model,@PathVariable("id") Long id) {
-   
+		model.addAttribute("id",id);
 		User personnel=UserService.getUser(id);
 		
 		model.addAttribute("user",personnel);
@@ -136,7 +141,7 @@ public class AppController {
 	}
 	@GetMapping("/employeur/profil/{id}")
 	public String showProfile(Model model,@PathVariable("id") Long id) {
-   
+		model.addAttribute("id",id);
 		User personnel=UserService.getUser(id);
 		
 		model.addAttribute("user",personnel);
@@ -144,7 +149,7 @@ public class AppController {
 	}
 	@GetMapping("/collecteur/profil/{id}")
 	public String showProfilco(Model model,@PathVariable("id") Long id) {
-   
+		model.addAttribute("id",id);
 		User personnel=UserService.getUser(id);
 		
 		model.addAttribute("user",personnel);
@@ -152,7 +157,7 @@ public class AppController {
 	}
 	@GetMapping("/verificateur/profil/{id}")
 	public String showProfilv(Model model,@PathVariable("id") Long id) {
-   
+		model.addAttribute("id",id);
 		User personnel=UserService.getUser(id);
 		
 		model.addAttribute("user",personnel);
@@ -162,7 +167,7 @@ public class AppController {
 	public String showProfilc(Model model,@PathVariable("id") Long id) {
    
 		User personnel=UserService.getUser(id);
-		
+		model.addAttribute("id",id);
 		model.addAttribute("user",personnel);
 		return "profile-edit";
 	}
