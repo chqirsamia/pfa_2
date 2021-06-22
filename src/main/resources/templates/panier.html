@@ -73,6 +73,7 @@ var id="[[${id}]]";
 contextPath="[[@{/}]]";
 var crsfHeaderName="[[${_csrf.token}]]";
 var productId="[[${prodInfo.produit.id_produit}]]";
+var accept="[[${product.quantite}]]";
 </script>
                            <a class="fas fa-trash icon-red link-remove" th:href="@{'commandes/delete/'+${product.id_produit}+'-'+${prodInfo.commande.id}}"> </a>
                             </div>    
@@ -136,6 +137,7 @@ var productId="[[${prodInfo.produit.id_produit}]]";
 contextPath="[[@{/}]]";
 var csrfHeaderName="[[${_csrf.headerName}]]";
 var csrfValue="[[${_csrf.token}]]";
+
 </script>
 
 <script src="js/panier.js"></script>

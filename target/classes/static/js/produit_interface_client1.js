@@ -5,7 +5,7 @@
 
 
 
-    var urlParm = url + "/findAllProduitNC/"+id;
+    var urlParm = url + "/findAllProduitNC/16";
     var ProduitsNonCommandes = httpGet(urlParm);
     rebuildTable(ProduitsNonCommandes);
 
@@ -30,7 +30,6 @@
                           </div>
                           <div class="card-footer">
                             <p> Qantité en stock : `+data[i].quantite+`</p>
-                            <input id="quantiteC" class="quantiteC" type="text" placeholder="Quantité Commandé">
                             <div>
                               <p id="update"  class="panier-plus" value="`+data[i].id_produit+`" ><i class="fa fa-plus"></i></p>
                             </div>
@@ -52,11 +51,11 @@
                         var pid =  document.getElementsByClassName('panier-plus')[k].getAttribute("value");
                         console.log('value = '+ pid);
                         var quantiteC = $('#quantiteC').val();
-                        var urlP = url + "/addProduitsCommandes/"+pid+"/"+quantiteC+"/"+id;
+                        var urlP = url + "/addProduitsCommandes/"+pid+"/"+quantiteC+"/16";
                         console.log("avant pass");
                         var p = httpGet(urlP);
                         console.log("pres pass");
-                        var urlProduitNonC = url + "/findAllProduitNC/"+id;
+                        var urlProduitNonC = url + "/findAllProduitNC/16";
                         var ProduitsNonCommandes = httpGet(urlProduitNonC);
                         console.log(" pass");
                         rebuildTable(ProduitsNonCommandes);

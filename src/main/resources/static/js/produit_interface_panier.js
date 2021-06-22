@@ -2,13 +2,13 @@
     "use strict"; // Start of use strict
     const url ='http://localhost:8080';
 
-    var urlProduitC = url + "/findAllProduitC/16";
+    var urlProduitC = url + "/findAllProduitC/"+id;
     var ProduitsCommandes = httpGet(urlProduitC);
     rebuildTable(ProduitsCommandes);
 
     $(".confirme").click(function(e) {
         e.preventDefault();
-        var urlcon = url + "/addCommand/16";
+        var urlcon = url + "/addCommand/"+id;
         var con = httpGet(urlcon);
         rebuildTable(ProduitsCommandes);
     });
@@ -16,7 +16,7 @@
 
     $(".annule").click(function(e) {
         e.preventDefault();
-        var urlannul = url + "/deleteAllProduitsCommandes/16";
+        var urlannul = url + "/deleteAllProduitsCommandes/"+id;
         var annul = httpGet(urlannul);
         rebuildTable(ProduitsCommandes);
     });
@@ -25,7 +25,7 @@
 
 
     function CalculeTotaleCommande(){
-        var urlProduitC = url + "/findAllProduitC/16";
+        var urlProduitC = url + "/findAllProduitC/"+id;
         var ProduitsCommandes = httpGet(urlProduitC);
         var totale =0;
         for(var t=0;t<ProduitsCommandes.length;t++){
@@ -74,11 +74,11 @@
                     return function() {
                         var pid =  document.getElementsByClassName('delete')[k].getAttribute("value");
                         console.log('value = '+ pid);
-                        var urlD = url + "/deleteProduitsCommandes/"+pid+"/16";
+                        var urlD = url + "/deleteProduitsCommandes/"+pid+"/"+id;
                         console.log("avant pass");
                         var d = httpGet(urlD);
                         console.log("pres pass");
-                        var urlProduitC = url + "/findAllProduitC/16";
+                        var urlProduitC = url + "/findAllProduitC/"+id;
                         var ProduitsCommandes = httpGet(urlProduitC);
                         console.log(" pass");
                         rebuildTable(ProduitsCommandes);

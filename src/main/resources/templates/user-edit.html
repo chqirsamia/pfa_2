@@ -67,7 +67,7 @@
 					</h2>
 				</caption>
          <form action="#"  th:action="@{/Personnel/update/{id}(id=${user.id})}" 
-                     th:object="${user}"method="post">
+                     th:object="${user}"method="post"  >
 				<fieldset class="form-group">
 					<label>Nom </label> <input type="text" data-tip="vous ne pouvez pas changer le nom"
 						th:field="${user.nom}" class="form-control"
@@ -100,7 +100,8 @@
 						th:field="${user.passwordncry}" class="form-control"
 						name="passwordncry">
 				</fieldset>
-				<fieldset class="form-group">
+				
+				<fieldset class="form-group" >
 					<label>Role</label> <select th:field="${user.role}" name="role">
     <option value="default">Select a role</option>
     <option  value="CO" th:text="collecteur"/>
@@ -109,6 +110,7 @@
       <option  value="A" th:text="admin"/>
 </select>
 </fieldset>
+
 				<button type="submit" class="btn btn-info" style="margin-left:200px;font-weight:bold">Save</button>
 				</form>
 			</div>

@@ -5,7 +5,7 @@
 
 
 
-    var urlParm = url + "/findAllProduitNC/16";
+    var urlParm = url + "/findAllProduitNC/"+id;
     var ProduitsNonCommandes = httpGet(urlParm);
     rebuildTable(ProduitsNonCommandes);
 
@@ -52,11 +52,11 @@
                         var pid =  document.getElementsByClassName('panier-plus')[k].getAttribute("value");
                         console.log('value = '+ pid);
                         var quantiteC = $('#quantiteC').val();
-                        var urlP = url + "/addProduitsCommandes/"+pid+"/"+quantiteC+"/16";
+                        var urlP = url + "/addProduitsCommandes/"+pid+"/"+quantiteC+"/"+id;
                         console.log("avant pass");
                         var p = httpGet(urlP);
                         console.log("pres pass");
-                        var urlProduitNonC = url + "/findAllProduitNC/16";
+                        var urlProduitNonC = url + "/findAllProduitNC/"+id;
                         var ProduitsNonCommandes = httpGet(urlProduitNonC);
                         console.log(" pass");
                         rebuildTable(ProduitsNonCommandes);

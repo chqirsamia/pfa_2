@@ -13,13 +13,16 @@ public interface ProduitDAO extends JpaRepository<Produit,Integer> {
     @Override
     List<Produit> findAll();
 
+    @Query("select p from Produit p where  p.quantite>0")
+    List<Produit> find();
+    
     /* Cherecher Produit par : */
 
-    @Query("select p from Produit p where p.id_produit =?1")
+    @Query("select p from Produit p where p.id_produit =?1 and p.quantite>0")
     Produit findProduitById_produit(int id_produit);
 
     /* Par Code */
-    @Query("select p from Produit p where p.code =?1")
+    @Query("select p from Produit p where p.code =?1 ")
     Produit findProduitByCode(int code);
 
     /* Nom Produit */

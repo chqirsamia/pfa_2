@@ -68,9 +68,9 @@ public class ProdComController {
 	public String deletepanier(Model model,@PathVariable("idcom") int idcom){
 		model.addAttribute("id",idcom);
 		Commande commande=comService.findbyId(idcom);
-		List<ProdCom> list=prodcomService.findByCommande(idcom);
+		List<ProdCom> liste=prodcomService.findByCommande(idcom);
 		float total=0;
-		for( ProdCom produit : list ) {
+		for( ProdCom produit : liste ) {
 	           Produit prod= prodService.findProduitById(produit.getId());
 	           total=total+produit.getTotal();
 	           int qte=produit.getQuantite();
@@ -78,9 +78,10 @@ public class ProdComController {
 		}
 		 comService.updateT(idcom,total,commande);
 		
-		
+		 List<Commande> list=comService.findCommandeExterne();
+			model.addAttribute("list",list);
 		//prodcomService.deleteCommande(idcom);
 	
-		return "redirect:/employeur/commandes";
+		return "commande";
 	}  
 }

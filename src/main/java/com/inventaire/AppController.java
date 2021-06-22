@@ -69,7 +69,7 @@ public class AppController {
 	
 	@GetMapping("/produit")
 	public String viewproduitnc(){
-		return "produit-list";
+		return "produits";
 	}
 	@GetMapping("/produits/{id}")
 	public String viewproduitc(Model model,@PathVariable("id") Long id){

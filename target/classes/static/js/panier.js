@@ -47,8 +47,12 @@ function increaseQuantity(link)
 productId=link.attr("pid");
 qtyInput =$("#quantity"+productId);
 newQty=parseInt(qtyInput.val())+1;
-if(newQty<10000) qtyInput.val(newQty);
+if(accept>=newQty)
+{if(newQty<1000) qtyInput.val(newQty);
 updateQuantity(productId,newQty);}
+else{
+alert('quantite insuffisante dans le stock');
+}}
 function updateQuantity(productId,quantity){
 url=contextPath+"commandes/updateQuantity/"+productId+'-'+id+'-'+quantity;
 $.ajax({

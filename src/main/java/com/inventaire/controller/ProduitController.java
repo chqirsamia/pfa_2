@@ -85,6 +85,7 @@ public class ProduitController {
         model.addAttribute("emplacements", emplacementDAO.findAll());
         return "produit_interface_employee";
     }
+   
 
     @PostMapping("/CreateProduit")
     public String saveProduit(@RequestParam("file") MultipartFile file,

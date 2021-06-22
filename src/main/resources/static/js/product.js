@@ -249,7 +249,7 @@ for (var j = 0; j < num; j++) {
     function addProduct(id_produit){
         var urlParm = url + "/addPoduit/"+id_produit+'-'+id;
         httpGet(urlParm);
-        alert('add');
+        
         var urlfindAll = url + "/findAllProduit";
         var produits = httpGet(urlfindAll);
      

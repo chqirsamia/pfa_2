@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-      <base href="/">
+     <base href="/">
     <title>Trip</title>
 
     <!-- Bootstrap Core CSS -->
@@ -26,48 +26,29 @@
 
 <body>
 
-<div class="nav">
-    <div class="nav-title">
-        <div class="nav-desc">
-<!--            <a th:href="@{/produit_interface_client}"><p><i class="fa fa-arrow-left"></i></p></a>-->
-            <h1>Pharmacie</h1>
-            <p><i class="fa fa-heartbeat"></i></p>
-            <p><i class="fa fa-stethoscope"></i></p></div>
-
-    </div>
-</div>
-
-<!-- Bare de navigation -->
-
-<!-- Fin de la barre de navigation -->
-
-<!-- Header -->
-<header class="header">
-
-</header>
-<!-- Fin Header -->
-<!-- Barre de trie -->
-<section class="recherche">
-    <div class="rech-trie">
-
-        <button type="button" class="confirme btn btn-success">Confirmer</button>
-        <button type="button" class="annule btn btn-danger">Annuler</button>
-
-    </div>
-
-    
-
-</section>
-<!--Fin  barre de trie -->
-<!-- Section Principale-->
+<div th:replace="fragments/navbar"></div>
+  
 <section class="main" id="main">
     <!-- Toutes les cartes -->
-    <div class="cards" id="cards" >
+    <div class="cards" id="cards" ><!--th:each="produit :${produits}"-->
+        <!--<div class="card" id="card">
+            <img  src="https://images.ctfassets.net/hrltx12pl8hq/3MbF54EhWUhsXunc5Keueb/60774fbbff86e6bf6776f1e17a8016b4/04-nature_721703848.jpg?fit=fill&w=480&h=270" alt="" ><!-th:src="*{'data:image/jpeg;base64,'+${produit.image}}" >->
+            <div class="card-header">
+                <h4 class="title"  th:text="${produit.nom_produit}" />
+                <h4 class="price" th:text="${produit.prix_unitaire}"/>
+            </div>
+            <div class="card-body">
+                <p th:text="${produit.description}"/>
+            </div>
+        </div>-->
+
+
+
+
+
 
     </div>
-    <!-- Fin de toutes les cartes-->
-
-
+   
 
 </section>
 <!-- Fin de la section principale -->
@@ -89,7 +70,7 @@
 var id="[[${id}]]";
 </script>
 
-<script src="js/produit_interface_panier.js"></script>
+<script src="js/produit_interface_client1.js"></script>
 
 
 

@@ -100,6 +100,7 @@
 						th:field="${user.passwordncry}" class="form-control"
 						name="passwordncry">
 				</fieldset>
+				<a th:if="${user.role} !='C'">
 				<fieldset class="form-group">
 					<label>Role</label> <select th:field="${user.role}" name="role">
     <option value="default">Select a role</option>
@@ -109,6 +110,7 @@
       <option  value="A" th:text="admin"/>
 </select>
 </fieldset>
+</a>
 				<button type="submit" class="btn btn-info" style="margin-left:200px;font-weight:bold">Save</button>
 				</form>
 			</div>

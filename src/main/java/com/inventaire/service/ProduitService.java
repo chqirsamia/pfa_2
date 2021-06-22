@@ -29,7 +29,7 @@ public class ProduitService {
     EmplacementDAO emplacementDAO;
 
     public List<Produit> findAllProduit(){
-        return produitDAO.findAll();
+        return produitDAO.find();
     }
 
     public Produit findProduitById_produit(int id_produit){
@@ -115,7 +115,7 @@ public class ProduitService {
 
     public List<Produit> deleteProduit(int id_produit){
         produitDAO.deleteById(id_produit);
-        return produitDAO.findAll();
+        return produitDAO.find();
     }
 
     public String deleteAll(){
@@ -172,7 +172,7 @@ public class ProduitService {
             produit.setEtat_stock(etat_stock);
             produit.setDate_cree(date_cree);
 
-            List<Produit> ps = produitDAO.findAll();
+            List<Produit> ps = produitDAO.find();
             for(int i=0 ; i<ps.size();i++){
                 int codes = ps.get(i).getCode();
                 if(code == codes){
@@ -243,7 +243,7 @@ public class ProduitService {
         produit.setEtat_stock(etat_stock);
         produit.setDate_modifier(date_cree);
 
-        List<Produit> ps = produitDAO.findAll();
+        List<Produit> ps = produitDAO.find();
         for(int i=0 ; i<ps.size();i++){
             int codes = ps.get(i).getCode();
             if(code == codes){
