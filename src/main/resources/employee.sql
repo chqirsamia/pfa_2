@@ -4,5 +4,5 @@ CREATE TABLE IF NOT EXISTS Employee(
         nom_employee varchar(30)
 );
 INSERT INTO Employee VALUES (1,'AJABRI HIBA');
-INSERT INTO Employee VALUES (null,'CHQIR SAMIA');
+INSERT INTO Employee VALUES (null,'CHQUIR SAMIA');
 select * from Employee;

@@ -18,7 +18,7 @@ public class ProduitRestController {
     ProduitService produitService;
 
     @Autowired
-    ProduitDAO produitDAO;
+    ProduitDAO produiDAO;
 
     @GetMapping("/findAllProduit")
     public List<Produit> findAllProduit(){
@@ -27,7 +27,7 @@ public class ProduitRestController {
 
     @GetMapping("/findProduitById_produit/{id_produit}")
     public Produit findProduitById_produit(@PathVariable int id_produit){
-        return produitDAO.findProduitById_produit(id_produit);
+        return produiDAO.findProduitById_produit(id_produit);
     }
 
     @GetMapping("/findProduitByNom_produit/{nom_produit}")
@@ -91,8 +91,10 @@ public class ProduitRestController {
     }
 
     @GetMapping("/deleteProduit/{id_produit}")
-    public void deleteProduit(@PathVariable int id_produit){
-        produitService.deleteProduit(id_produit);
+    public List<Produit> deleteProduit(@PathVariable int id_produit){
+        return produitService.deleteProduit(id_produit);
     }
+
+
 
 }
