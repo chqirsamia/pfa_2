@@ -35,85 +35,18 @@ public class AppController {
 	public String viewHomePage(){
 		return "index";
 	}
-	@GetMapping("/acceuil_admin/{id}")
-	public String viewAdminHomePage(Model model,@PathVariable("id") Long id){
-		model.addAttribute("id",id);
+	@GetMapping("/acceuil_admin")
+	public String viewAdminHomePage(){
 		return "acceuilA";
 	}
-	
-	@GetMapping("/acceuil_client/{id}")
-	public String viewClientHomePage(Model model,@PathVariable("id") Long id){
-		model.addAttribute("id",id);
-
+	@GetMapping("/acceuil_client")
+	public String viewClientHomePage(){
 		return "acceuilC";
 	}
-	@GetMapping("/acceuil_collecteur/{id}")
-	public String viewCollecteurHomePage(Model model,@PathVariable("id") Long id){
-		model.addAttribute("id",id);
+	@GetMapping("/acceuil_collecteur")
+	public String viewCollecteurHomePage(){
 		return "acceuilCO";
 	}
-	@GetMapping("/acceuil_employeur/{id}")
-	public String viewEmployeurHomePage(Model model,@PathVariable("id") Long id){
-		model.addAttribute("id",id);
-		return "acceuilE";
-	}
-	@GetMapping("/acceuil_verificateur/{id}")
-	public String viewVerificateurHomePage(Model model,@PathVariable("id") Long id){
-		model.addAttribute("id",id);
-		return "acceuilV";
-	}
-	
-	@GetMapping("/produit")
-	public String viewproduitnc(){
-		return "produit-list";
-	}
-	@GetMapping("/produits/{id}")
-	public String viewproduitc(Model model,@PathVariable("id") Long id){
-		model.addAttribute("id",id);
-		return "produit_interface_client";
-	}
-	@GetMapping("/user-list/{id}")
-	public String showAdmin(Model model,@PathVariable("id") Long id) {		
-		model.addAttribute("list", UserService.getPersonnel());
-		model.addAttribute("id",id);
-		return "user-list";
-	}
-	@GetMapping("/user-list/newPersonnel")
-	public String newPersonnel(Model model) {
-		model.addAttribute("user",new User());
-	
-		return "user-form";
-	}
-	@PostMapping(path="/user-list/insertPersonnel")
-	public String insertNewPersonnel(@Valid User user, BindingResult result,Model model)
-	{UserService.addNewPersonnel(user);
-	BCryptPasswordEncoder encoder= new BCryptPasswordEncoder();
-	String encodedPassword=encoder.encode(user.getPassword());
-	user.setPassword(encodedPassword);
-	return "redirect:/user-list";}
-	
-	@GetMapping (path="/editPersonnel/{ID}")
-	public String editAdmin(@PathVariable Long ID,Model model) {
-		User personnel=UserService.getUser(ID);
-		
-		model.addAttribute("user",personnel);
-		return "user-edit";
-	}
-	
-	@PostMapping (path="/Personnel/update/{id}")
-	public String updateUser (@PathVariable Long id,@RequestParam(required=false) String tel,
-			@RequestParam(required=false) String email,@RequestParam(required=false) String passwordncry,@RequestParam(required=false) String role) {
-		BCryptPasswordEncoder encoder= new BCryptPasswordEncoder();
-		String encodedPassword=encoder.encode(passwordncry);
-		UserService.updatePersonnel(email,tel,id,passwordncry,encodedPassword,role);
-		return "redirect:/user-list/{id}";}
-	
-	@GetMapping(path="/Personnel/delete/{id}")
-	public String deleteAdmin(@PathVariable("id") Long id) {
-		UserService.deleteUser(id);
-		return "redirect:/user-list";}
-	
-	
 	@GetMapping("/connexion")
 	public String showSignInForm(Model model) {
 		model.addAttribute("user",new User());
@@ -125,47 +58,11 @@ public class AppController {
 		return "signup";
 	}
 
+	@GetMapping("/acceuilA")
+	public String showHome() {
+		return "acceuilA";
+	}
 	
-	@GetMapping("/admin/profil/{id}")
-	public String showProfil(Model model,@PathVariable("id") Long id) {
-   
-		User personnel=UserService.getUser(id);
-		
-		model.addAttribute("user",personnel);
-		return "profile-edit";
-	}
-	@GetMapping("/employeur/profil/{id}")
-	public String showProfile(Model model,@PathVariable("id") Long id) {
-   
-		User personnel=UserService.getUser(id);
-		
-		model.addAttribute("user",personnel);
-		return "profile-edit";
-	}
-	@GetMapping("/collecteur/profil/{id}")
-	public String showProfilco(Model model,@PathVariable("id") Long id) {
-   
-		User personnel=UserService.getUser(id);
-		
-		model.addAttribute("user",personnel);
-		return "profile-edit";
-	}
-	@GetMapping("/verificateur/profil/{id}")
-	public String showProfilv(Model model,@PathVariable("id") Long id) {
-   
-		User personnel=UserService.getUser(id);
-		
-		model.addAttribute("user",personnel);
-		return "profile-edit";
-	}
-	@GetMapping("/client/profil/{id}")
-	public String showProfilc(Model model,@PathVariable("id") Long id) {
-   
-		User personnel=UserService.getUser(id);
-		
-		model.addAttribute("user",personnel);
-		return "profile-edit";
-	}
 	
 	@PostMapping("/process_signup")
 	public String processSignUp(User user) {
@@ -173,7 +70,6 @@ public class AppController {
         if (existing != null){
             return "redirect:/inscription?error";
         }
-     
         else {
 		BCryptPasswordEncoder encoder= new BCryptPasswordEncoder();
 		String encodedPassword=encoder.encode(user.getPassword());

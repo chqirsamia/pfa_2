@@ -11,7 +11,7 @@ body {
     height: 70px;
     width: 100%;
     color: white;
-    background-color: rgb(64, 128, 128) !important;
+    background-color: #5ba5af !important;
     position: fixed;
     top: 0;
 }
@@ -62,7 +62,7 @@ nav h1 {
 nav .onglets {
     display: flex;
     text-align: center;
- flex-wrap: wrap;
+/ / flex-wrap: wrap;
 }
 
 nav .onglets p {
@@ -302,7 +302,7 @@ header button:focus {
 .cards .card .card-header .card-title {
     padding: 0px;
     margin: 0;
- border: 2 px solid black;
+/ / border: 2 px solid black;
 }
 
 #date_cree {
