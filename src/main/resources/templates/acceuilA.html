@@ -24,11 +24,14 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 		crossorigin="anonymous"></script>
-	<title>MyRide</title>
+	<title>InventSH</title>
 </head>
 
 <body style="background-color:rgb(192,192,192);height:92%">
 	<!-- Menu -->
+	<div sec:authorize="isAuthenticated()">
+
+
 	<div th:replace="fragments/navbar-admin"></div>
 	<!-- Page d'acceuil -->
 	<section id="home"
@@ -101,6 +104,7 @@
 		$("#myCarousel").carousel(2);
 });*/
 	</script>
+	</div>
 </body>
 
 </html>

@@ -92,10 +92,13 @@ public class AppController {
 	@PostMapping(path="/user-list/insertPersonnel")
 	public String insertNewPersonnel(@Valid User user, BindingResult result,Model model)
 	{UserService.addNewPersonnel(user);
+	user.setPasswordncry(user.getPassword());
 	BCryptPasswordEncoder encoder= new BCryptPasswordEncoder();
 	String encodedPassword=encoder.encode(user.getPassword());
 	user.setPassword(encodedPassword);
-	return "redirect:/user-list";}
+	model.addAttribute("list", UserService.getPersonnel());
+	
+	return "user-list";}
 	
 	@GetMapping (path="/editPersonnel/{ID}")
 	public String editAdmin(@PathVariable Long ID,Model model) {
@@ -109,14 +112,30 @@ public class AppController {
 	public String updateUser (@PathVariable Long id,@RequestParam(required=false) String tel,
 			@RequestParam(required=false) String email,@RequestParam(required=false) String passwordncry,@RequestParam(required=false) String role) {
 		BCryptPasswordEncoder encoder= new BCryptPasswordEncoder();
+		String retourn;
 		String encodedPassword=encoder.encode(passwordncry);
 		UserService.updatePersonnel(email,tel,id,passwordncry,encodedPassword,role);
-		return "redirect:/user-list/{id}";}
+		if(role==null)
+			retourn= "acceuilC";
+		else {
+		if (role.equals("A"))
+		retourn= "redirect:/user-list/{id}";
+		if (role.equals("E"))
+			retourn= "acceuilC";
+		if (role.equals("CO"))
+			retourn= "acceuilCO";
+		else 
+			retourn= "acceuilV";
+		}
+		return retourn;
+		}
 	
 	@GetMapping(path="/Personnel/delete/{id}")
-	public String deleteAdmin(@PathVariable("id") Long id) {
+	public String deleteAdmin(@PathVariable("id") Long id,Model model) {
 		UserService.deleteUser(id);
-		return "redirect:/user-list";}
+		model.addAttribute("list", UserService.getPersonnel());
+		
+		return "user-list";}
 	
 	
 	@GetMapping("/connexion")
@@ -181,6 +200,7 @@ public class AppController {
      
         else {
 		BCryptPasswordEncoder encoder= new BCryptPasswordEncoder();
+		user.setPasswordncry(user.getPassword());
 		String encodedPassword=encoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
 		repo.save(user);

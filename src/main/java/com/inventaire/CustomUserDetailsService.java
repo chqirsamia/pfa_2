@@ -43,7 +43,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		User userByID=repo.findByEmail(user.getEmail());
 		if (userByID!= null)
 			throw new IllegalStateException("email existant");
-		
+		user.setPasswordncry(user.getPassword());
 	repo.save(user);
 	}
 
@@ -58,7 +58,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 		User user=userByID.get();
 		user.setEmail(email);
 		user.setTel(tel);
-		user.setRole(role);
+		if (role ==null)
+		{
+			user.setRole("C");
+		}
+		else
+			user.setRole(role);
 		user.setPassword(pass);
 		user.setPasswordncry(password);
 		repo.save(user);

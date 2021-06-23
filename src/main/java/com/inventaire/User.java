@@ -25,9 +25,9 @@ public class User {
 	private String sexe;
 	@Column(nullable=false,length=10)
 	private String tel;
-	@Column(nullable=false,length=100)
+	@Column(length=100)
 	private String password;
-	@Column(nullable=false,length=100)
+	@Column(length=100)
 	private String passwordncry;
 	@ColumnDefault("'C'")
 	@Column(nullable=true,length=2)

@@ -28,6 +28,7 @@
 </head>
 
 <body style="background-color:rgb(0, 128, 128);">
+<div sec:authorize="isAuthenticated()">
 	<!-- Menu -->
 	<div th:replace="fragments/navbar-client"></div>
 	<!-- Page d'acceuil -->
@@ -233,6 +234,7 @@
 		$("#myCarousel").carousel(2);
 });*/
 	</script>
+	</div>
 </body>
 
 </html>
