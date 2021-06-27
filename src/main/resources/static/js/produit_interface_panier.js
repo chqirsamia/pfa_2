@@ -10,7 +10,11 @@
         e.preventDefault();
         var urlcon = url + "/addCommand/"+id;
         var con = httpGet(urlcon);
-        rebuildTable(ProduitsCommandes);
+        var urlProduitC = url + "/findAllProduitC/"+id;
+    var ProduitsCommandes = httpGet(urlProduitC);
+    rebuildTable(ProduitsCommandes);
+        
+       
     });
 
 
@@ -18,7 +22,9 @@
         e.preventDefault();
         var urlannul = url + "/deleteAllProduitsCommandes/"+id;
         var annul = httpGet(urlannul);
-        rebuildTable(ProduitsCommandes);
+       var urlProduitNC = url + "/findAllProduitC/"+id;
+    var ProduitsNCommandes = httpGet(urlProduitNC);
+    rebuildTable(ProduitsNCommandes);
     });
 
 

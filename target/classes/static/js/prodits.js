@@ -5,7 +5,7 @@
 
 
 
-    var urlParm = url + "/findAllProduitNC/"+id;
+    var urlParm = url + "/findAllProduit";
     var ProduitsNonCommandes = httpGet(urlParm);
     rebuildTable(ProduitsNonCommandes);
 
@@ -48,17 +48,7 @@
 
                 panierplus[k].addEventListener("click", (function(k){
                     return function() {
-                        var pid =  document.getElementsByClassName('panier-plus')[k].getAttribute("value");
-                        console.log('value = '+ pid);
-                        var quantiteC = $('#quantiteC').val();
-                        var urlP = url + "/addProduitsCommandes/"+pid+"/"+quantiteC+"/"+id;
-                        console.log("avant pass");
-                        var p = httpGet(urlP);
-                        console.log("pres pass");
-                        var urlProduitNonC = url + "/findAllProduitNC/"+id;
-                        var ProduitsNonCommandes = httpGet(urlProduitNonC);
-                        console.log(" pass");
-                        rebuildTable(ProduitsNonCommandes);
+                         alert('veuillez vous connecter');
                     }
                 })(k));
 
@@ -70,13 +60,7 @@
     }
 
     function addProduitToPanier(pid){
-        var urlP = url + "/addProduitsCommandes/"+pid+'/'+id;
-        httpGet(urlP);
-        console.log("pres pass");
-        var urlProduitNonC = url + "/findAllProduitNC/"+id;
-        var ProduitsNonCommandes = httpGet(urlProduitNonC);
-        console.log(" pass");
-        rebuildTable(ProduitsNonCommandes);
+       alert('veuillez vous connecter');
 
     }
 
